@@ -1,0 +1,879 @@
+<section class="violet" data-type="chapter">
+<header>
+  <div class="icon"><img src="../images/sections/02/coffee.png" /></div>
+  <p>Chapitre 2</p>
+  <h1 id="about-data-aggregation">Agr&eacute;ger Les Donn&eacute;es</h1>
+  <p data-type="author">Par Alistair Croll Adapt&eacute; par&nbsp;Arnaud Flan</p>
+</header>
+
+<section class="id" data-type="sect1">
+<p>Quand on souhaite transformer des donn&eacute;es en information, le choix des donn&eacute;es par lesquelles vous allez commencer est primordial. Les donn&eacute;es peuvent &ecirc;tre de simples faits &mdash; r&eacute;sultat de l&rsquo;analyse d&rsquo;un autre contributeur &mdash; ou des donn&eacute;es brutes. Dans ce cas, tout le travail d&rsquo;exploration est laiss&eacute; &agrave; l&rsquo;utilisateur final.</p>
+
+<figure><img alt="Raw vs. Aggregated Data" src="../images/sections/02/Aggregation-aggregation-levels-fr.png" /></figure>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Niveau d&rsquo;agr&eacute;gation</th>
+			<th>Nombre de m&eacute;triques</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>Fait</td>
+			<td>Information (contexte maximal)</td>
+			<td>Information ponctuelle; Pas de possibilit&eacute; d&rsquo;aller plus loin</td>
+		</tr>
+		<tr>
+			<td>S&eacute;rie</td>
+			<td>Une seule mesure suivant un axe d&rsquo;analyse</td>
+			<td>Permet d&rsquo;analyser l&rsquo;&eacute;volution</td>
+		</tr>
+		<tr>
+			<td>S&eacute;ries multiples</td>
+			<td>Plusieurs mesures ayant au moins un axe en commun</td>
+			<td>Permet d&rsquo;analyser l&rsquo;&eacute;volution et la corr&eacute;lation entre les mesures</td>
+		</tr>
+		<tr>
+			<td>S&eacute;ries multiples sommables</td>
+			<td>Plusieurs mesures ayant au moins un axe en commun</td>
+			<td>Permet d&rsquo;analyser l&rsquo;&eacute;volution et la corr&eacute;lation entre les mesures. Permet de comparer les pourcentages par rapport au total</td>
+		</tr>
+		<tr>
+			<td>Donn&eacute;es r&eacute;sum&eacute;es</td>
+			<td>Un enregistrement pour chaque item de la s&eacute;rie ; Les mesures sont agr&eacute;g&eacute;es</td>
+			<td>Les items peuvent &ecirc;tre compar&eacute;s entre eux</td>
+		</tr>
+		<tr>
+			<td>Enregistrements individuels</td>
+			<td>Un enregistrement par &eacute;v&eacute;nement</td>
+			<td>Pas d&rsquo;agr&eacute;gation. Analyse jusqu&rsquo;au niveau le plus fin</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>La plupart des donn&eacute;es correspondent &agrave; un des niveaux d&eacute;finis ci-dessus. Si nous savons par quel type de <a class="glossterm" href="glossary01.html#data" target="_blank">donn&eacute;es</a> nous commen&ccedil;ons, nous pouvons grandement simplifier le travail pour obtenir une bonne premi&egrave;re visualisation de ces donn&eacute;es.</p>
+
+<p>Regardons un par un ces types d&rsquo;agr&eacute;gation, en les illustrant par notre exemple sur la consommation de caf&eacute;. Supposons qu&rsquo;un bar liste chaque tasse de caf&eacute; vendue et enregistre deux informations li&eacute;es &agrave; la vente : le sexe du l&rsquo;acheteur et le type de caf&eacute; (caf&eacute; noir, d&eacute;caf&eacute;in&eacute;, ou mocaccino).</p>
+
+<p>Le tableau de donn&eacute;es, par ann&eacute;e, ressemble &agrave; ceci<span data-type="footnote">Ces donn&eacute;es sont des donn&eacute;es fictives.</span>:</p>
+
+<table class="custom">
+	<tbody>
+		<tr>
+			<th>Ann&eacute;e</th>
+			<th>2000</th>
+			<th>2001</th>
+			<th>2002</th>
+			<th>2003</th>
+			<th>2004</th>
+			<th>2005</th>
+			<th>2006</th>
+			<th>2007</th>
+			<th>2008</th>
+		</tr>
+		<tr class="highlight">
+			<td>Total des ventes</td>
+			<td>19 795</td>
+			<td>23 005</td>
+			<td>31 711</td>
+			<td>40 728</td>
+			<td>50 440</td>
+			<td>60 953</td>
+			<td>74 143</td>
+			<td>93 321</td>
+			<td>120 312</td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+		</tr>
+		<tr class="highlight">
+			<td>Homme</td>
+			<td>12 534</td>
+			<td>16 452</td>
+			<td>19 362</td>
+			<td>24 726</td>
+			<td>28 567</td>
+			<td>31 110</td>
+			<td>39 001</td>
+			<td>48 710</td>
+			<td>61 291</td>
+		</tr>
+		<tr class="highlight">
+			<td>Femme</td>
+			<td>7 261</td>
+			<td>6 553</td>
+			<td>12 349</td>
+			<td>16 002</td>
+			<td>21 873</td>
+			<td>29 843</td>
+			<td>35 142</td>
+			<td>44 611</td>
+			<td>59 021</td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+		</tr>
+		<tr class="highlight">
+			<td>Caf&eacute; noir</td>
+			<td>9 929</td>
+			<td>14 021</td>
+			<td>17 364</td>
+			<td>20 035</td>
+			<td>27 854</td>
+			<td>34 201</td>
+			<td>36 472</td>
+			<td>52 012</td>
+			<td>60 362</td>
+		</tr>
+		<tr class="highlight">
+			<td>D&eacute;caf&eacute;in&eacute;</td>
+			<td>6 744</td>
+			<td>6 833</td>
+			<td>10 201</td>
+			<td>13 462</td>
+			<td>17 033</td>
+			<td>19 921</td>
+			<td>21 094</td>
+			<td>23 716</td>
+			<td>38 657</td>
+		</tr>
+		<tr class="highlight">
+			<td>Mocaccino</td>
+			<td>3 122</td>
+			<td>2 151</td>
+			<td>4 146</td>
+			<td>7 231</td>
+			<td>5 553</td>
+			<td>6 831</td>
+			<td>16 577</td>
+			<td>17 593</td>
+			<td>21 293</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Fait</h2>
+
+<p>Un <a class="glossterm" href="glossary01.html#factoid" target="_blank">fait</a> est une information. Il est d&eacute;fini &agrave; partir des donn&eacute;es, mais choisit de mettre l&#39;accent sur un point particulier.</p>
+
+<div data-type="example">
+<p><strong>Exemple:</strong> en 2000, 36,7% du caf&eacute; a &eacute;t&eacute; consomm&eacute; par des femmes.</p>
+</div>
+
+<h2>S&eacute;rie</h2>
+
+<p>Il s&rsquo;agit d&rsquo;une information (la <a class="glossterm " href="glossary01.html#variable-dependent" target="_blank">variable d&eacute;pendante</a>) compar&eacute;e &agrave; une autre (la <a class="glossterm" href="glossary01.html#variable-independent" target="_blank">variable ind&eacute;pendante</a>). Souvent, la variable ind&eacute;pendante est le temps.</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Ann&eacute;e</th>
+			<th>2000</th>
+			<th>2001</th>
+			<th>2002</th>
+			<th>2003</th>
+		</tr>
+		<tr>
+			<td>Total des ventes</td>
+			<td>19 795</td>
+			<td>23 005</td>
+			<td>31 711</td>
+			<td>40 728</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Dans cet exemple, le total des ventes de caf&eacute; d&eacute;pend de l&rsquo;ann&eacute;e. Ici, l&rsquo;ann&eacute;e est ind&eacute;pendante (&laquo; prenez une ann&eacute;e, n&rsquo;importe laquelle &raquo;) et le total des ventes est d&eacute;pendant (&laquo; bas&eacute; sur cette ann&eacute;e, la consommation de tasses de caf&eacute; est de 23 005 tasses &raquo;).</p>
+
+<p>Une s&eacute;rie peut aussi &ecirc;tre compos&eacute;e de donn&eacute;es continues, comme des temp&eacute;ratures. Consid&eacute;rons ce tableau qui montre le temps pour un adulte avant de souffrir d&rsquo;une br&ucirc;lure du premier degr&eacute; selon la temp&eacute;rature de l&rsquo;eau. Ici, la temp&eacute;rature de l&rsquo;eau est la variable ind&eacute;pendante.<span class="footnote" contenteditable="false" data-type="footnote">H&eacute;morandum du Gouvernement am&eacute;ricain, Commission de S&eacute;curit&eacute; des Produits de consommation, Peter L. Armstrong, 15 Sept. 1978.</span>:</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Temp&eacute;rature de l&rsquo;eau &deg;C (&deg;F)</th>
+			<th>D&eacute;lai avant de souffrir d&rsquo;une br&ucirc;lure du premier degr&eacute;</th>
+		</tr>
+		<tr>
+			<td>46,7 (116)</td>
+			<td>35 minutes</td>
+		</tr>
+		<tr>
+			<td>50 (122)</td>
+			<td>1 minute</td>
+		</tr>
+		<tr>
+			<td>55 (131)</td>
+			<td>5 secondes</td>
+		</tr>
+		<tr>
+			<td>60 (140)</td>
+			<td>2 secondes</td>
+		</tr>
+		<tr>
+			<td>65 (149)</td>
+			<td>1 second</td>
+		</tr>
+		<tr>
+			<td>67,8 (154)</td>
+			<td>Instantan&eacute;</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Il peut aussi s&rsquo;agir d&rsquo;une <a class="glossterm " href="glossary01.html#series" target="_blank">s&eacute;rie</a> de donn&eacute;es non contigu&euml;s reli&eacute;es entre elles par une cat&eacute;gorie comme des marques de voitures, des races de chiens, des l&eacute;gumes ou des plan&egrave;tes du syst&egrave;me solaire<span contenteditable="false" data-type="footnote">Centre national de Donn&eacute;es de Science Spatial, NASA http://nssdc.gsfc.nasa.gov/planetary/factsheet/planet_table_ratio.html</span>:</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Plan&egrave;te</th>
+			<th>Masse relative par rapport &agrave; la Terre</th>
+		</tr>
+		<tr>
+			<td>Mercure</td>
+			<td>0,0553</td>
+		</tr>
+		<tr>
+			<td>Venus</td>
+			<td>0,815</td>
+		</tr>
+		<tr>
+			<td>Terre</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>Mars</td>
+			<td>0,107</td>
+		</tr>
+		<tr>
+			<td>Jupiter</td>
+			<td>317,8</td>
+		</tr>
+		<tr>
+			<td>Saturne</td>
+			<td>95,2</td>
+		</tr>
+		<tr>
+			<td>Uranus</td>
+			<td>14,5</td>
+		</tr>
+		<tr>
+			<td>Neptune</td>
+			<td>17,1</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Dans ces cas, les s&eacute;ries ont une et une seule variable d&eacute;pendante pour chaque variable ind&eacute;pendante. En d&rsquo;autres termes, il n&rsquo;y a qu&rsquo;un seul total des ventes de caf&eacute; pour chaque ann&eacute;e. On les repr&eacute;sente g&eacute;n&eacute;ralement en diagramme &agrave; <a class="glossterm " href="glossary01.html#graph-bar" target="_blank">barres</a>, en <a class="glossterm " href="glossary01.html#graph-series" target="_blank">s&eacute;rie temporelle</a>, ou en histogramme.</p>
+
+<figure><img alt="Total des ventes" src="../images/sections/02/Aggregation-total-sales-fr.png" /></figure>
+
+<p>Quand il y a plusieurs variables d&eacute;pendantes pour chaque variable ind&eacute;pendante, on repr&eacute;sente souvent l&rsquo;information sous forme de <a class="glossterm" href="glossary01.html#plot-scatter" target="_blank">nuages de point</a> ou de <a class="glossterm " href="glossary01.html#map-heat" target="_blank">carte des temp&eacute;ratures</a>, (aussi appel&eacute;e carte thermique), ou alors on retravaille les donn&eacute;es (calcul d&rsquo;une moyenne par exemple) pour simplifier ce qu&rsquo;elles repr&eacute;sentent. Nous reviendrons sur ce point plus tard dans ce chapitre dans la section intitul&eacute;e &laquo; Utiliser la visualisation pour r&eacute;v&eacute;ler les variations cach&eacute;es &raquo;.</p>
+
+<h2>S&eacute;ries multiples</h2>
+
+<p>Un jeu de donn&eacute;es d&rsquo;une <a class="glossterm " href="glossary01.html#series-multiseries" target="_blank">s&eacute;rie multiple</a> se compose de plusieurs variables d&eacute;pendantes et d&rsquo;une variable ind&eacute;pendante. Ici, les donn&eacute;es concernant l&rsquo;exposition &agrave; l&rsquo;eau chaude avec des donn&eacute;es compl&eacute;mentaires:<span contenteditable="false" data-type="footnote">H&eacute;morandum du Gouvernement am&eacute;ricain, Commission de S&eacute;curit&eacute; des Produits de consommation, Peter L. Armstrong, 15 Sept. 1978.</span>:</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Temp&eacute;rature de l&rsquo;eau &deg;C (&deg;F)</th>
+			<th>D&eacute;lai avant de souffrir d&rsquo;une br&ucirc;lure du premier degr&eacute;</th>
+			<th>D&eacute;lai avant de souffrir d&rsquo;une br&ucirc;lure du 2&egrave;me et 3&egrave;me degr&eacute;</th>
+		</tr>
+		<tr>
+			<td>46,7 (116)</td>
+			<td>35 minutes</td>
+			<td>45 minutes</td>
+		</tr>
+		<tr>
+			<td>50 (122)</td>
+			<td>1 minute</td>
+			<td>5 minutes</td>
+		</tr>
+		<tr>
+			<td>55 (131)</td>
+			<td>5 secondes</td>
+			<td>25 secondes</td>
+		</tr>
+		<tr>
+			<td>60 (140)</td>
+			<td>2 secondes</td>
+			<td>5 secondes</td>
+		</tr>
+		<tr>
+			<td>65 (149)</td>
+			<td>1 second</td>
+			<td>2 secondes</td>
+		</tr>
+		<tr>
+			<td>67,8 (154)</td>
+			<td>Instantan&eacute;</td>
+			<td>1 second</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Ou, en reprenant notre exemple sur le caf&eacute;, voici plusieurs s&eacute;ries:</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Ann&eacute;e</th>
+			<th>2000</th>
+			<th>2001</th>
+			<th>2002</th>
+			<th>2003</th>
+			<th>2004</th>
+			<th>2005</th>
+		</tr>
+		<tr>
+			<td>Homme</td>
+			<td>12 534</td>
+			<td>16 452</td>
+			<td>19 362</td>
+			<td>24 726</td>
+			<td>28 567</td>
+			<td>31 110</td>
+		</tr>
+		<tr>
+			<td>Caf&eacute; noir</td>
+			<td>9 929</td>
+			<td>14 021</td>
+			<td>17 364</td>
+			<td>20 035</td>
+			<td>27 854</td>
+			<td>34 201</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Ce jeu de donn&eacute;es nous indique plusieurs choses sur l&rsquo;ann&eacute;e 2001. Nous savons que 16 452 tasses de caf&eacute; ont &eacute;t&eacute; servies &agrave; des hommes et que 14 021 tasses de caf&eacute; servies &eacute;taient des tasses de caf&eacute; noir (avec caf&eacute;ine, cr&egrave;me ou lait, et sucre).</p>
+
+<p>Nous ne savons toutefois pas comment combiner ces informations dans la mesure o&ugrave; elles ne sont pas reli&eacute;es entre elles. Nous ne pouvons pas d&eacute;terminer quel pourcentage des tasses de caf&eacute; noir ont &eacute;t&eacute; servies &agrave; des hommes ou combien de tasses ont &eacute;t&eacute; servies &agrave; des femmes.</p>
+
+<p>En d&rsquo;autres termes, les donn&eacute;es de s&eacute;ries multiples sont simplement plusieurs s&eacute;ries pr&eacute;sent&eacute;es dans un seul diagramme ou un seul tableau. On peut les repr&eacute;senter ensemble mais on ne peut pas les comparer ou les combiner.</p>
+
+<figure><img alt="Line chart, Homme and Caf&eacute; noir Coffee" src="../images/sections/02/Aggregation-line-regular-male-fr.png" /></figure>
+
+<h2>S&eacute;ries multiples sommables</h2>
+
+<p>Comme leur nom l&rsquo;indique, <a class="glossterm " href="glossary01.html#series-summable-multiseries" target="_blank">les s&eacute;ries multiples sommables</a> sont des s&eacute;ries particuli&egrave;res car segment&eacute;es en sous-groupe (genre, type de caf&eacute;).</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Ann&eacute;e</th>
+			<th>2000</th>
+			<th>2001</th>
+			<th>2002</th>
+			<th>2003</th>
+			<th>2004</th>
+			<th>2005</th>
+			<th>2006</th>
+			<th>2007</th>
+			<th>2008</th>
+		</tr>
+		<tr>
+			<td>Homme</td>
+			<td>12 534</td>
+			<td>16 452</td>
+			<td>19 362</td>
+			<td>24 726</td>
+			<td>28 567</td>
+			<td>31 110</td>
+			<td>39 001</td>
+			<td>48 710</td>
+			<td>61 291</td>
+		</tr>
+		<tr>
+			<td>Femme</td>
+			<td>7 261</td>
+			<td>6 553</td>
+			<td>12 349</td>
+			<td>16 002</td>
+			<td>21 873</td>
+			<td>29 843</td>
+			<td>35 142</td>
+			<td>44 611</td>
+			<td>59 021</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Puisque nous savons qu&rsquo;un buveur de caf&eacute; est soit un homme, soit une femme, nous pouvons additionner ces 2 s&eacute;ries pour faire des observations plus larges sur la consommation totale de caf&eacute;. Tout d&rsquo;abord, nous pouvons calculer des pourcentages.</p>
+
+<figure><img alt="Pie chart, Consommation de caf&eacute; par sexe en 2001" src="../images/sections/02/Aggregation-pie-gender-fr.png" /></figure>
+
+<p>Ensuite, nous pouvons additionner ces donn&eacute;es pour en d&eacute;finir le total:</p>
+
+<figure><img alt="Area chart, Total coffee consumption by gender" src="../images/sections/02/Aggregation-area-gender-fr.png" /></figure>
+
+<p>Un d&eacute;fi avec les donn&eacute;es des s&eacute;ries multiples sommables est de savoir quelles s&eacute;ries vont ensemble. Regardons les s&eacute;ries suivantes:</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Ann&eacute;e</th>
+			<th>2000</th>
+			<th>2001</th>
+			<th>2002</th>
+			<th>2003</th>
+			<th>2004</th>
+		</tr>
+		<tr>
+			<td>Homme</td>
+			<td>12 534</td>
+			<td>16 452</td>
+			<td>19 362</td>
+			<td>24 726</td>
+			<td>28 567</td>
+		</tr>
+		<tr>
+			<td>Femme</td>
+			<td>7 261</td>
+			<td>6 553</td>
+			<td>12 349</td>
+			<td>16 002</td>
+			<td>21 873</td>
+		</tr>
+		<tr>
+			<td>Caf&eacute; noir</td>
+			<td>9 929</td>
+			<td>14 021</td>
+			<td>17 364</td>
+			<td>20 035</td>
+			<td>27 854</td>
+		</tr>
+		<tr>
+			<td>D&eacute;caf&eacute;in&eacute;</td>
+			<td>6 744</td>
+			<td>6 833</td>
+			<td>10 201</td>
+			<td>13 462</td>
+			<td>17 033</td>
+		</tr>
+		<tr>
+			<td>Mocaccino</td>
+			<td>3 122</td>
+			<td>2 151</td>
+			<td>4 146</td>
+			<td>7 231</td>
+			<td>5 553</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Intrins&egrave;quement, rien dans ces donn&eacute;es ne nous dit comment nous pouvons les combiner. C&rsquo;est l&rsquo;interpr&eacute;tation humaine des donn&eacute;es qui nous permet de savoir que Hommes + Femmes = l&rsquo;ensemble de la population des buveurs de caf&eacute; et que Caf&eacute; noir + D&eacute;caf&eacute;in&eacute; + Mocaccino = tous les caf&eacute;s (de ce jeu de donn&eacute;es). Sans cette connaissance, nous ne pouvons pas combiner ces donn&eacute;es ou au pire, nous les combinerions mal.</p>
+
+<div data-type="warning">
+<h3>Il est difficile d&rsquo;explorer des donn&eacute;es r&eacute;sum&eacute;es</h3>
+
+<p>M&ecirc;me si nous connaissons la signification de ces donn&eacute;es et que nous r&eacute;alisons qu&rsquo;il s&rsquo;agit de 2 s&eacute;ries multiples s&eacute;par&eacute;es (une selon le sexe des consommateurs et l&rsquo;autre selon le type de caf&eacute;), nous ne pouvons pas les explorer en profondeur. Par exemple, nous ne pouvons pas savoir combien de femmes ont bu un caf&eacute; noir en 2000.</p>
+
+<p>Une erreur commune (mais importante) serait de dire:</p>
+
+<ul>
+	<li>36,7% des tasses de caf&eacute; ont &eacute;t&eacute; vendues &agrave; des femmes en 2000.</li>
+	<li>Et il y a eu 9 929 tasses de caf&eacute; noir ont &eacute;t&eacute; vendues en 2000.</li>
+	<li>Donc, 3 642,5 tasses de caf&eacute; noir ont &eacute;t&eacute; vendues &agrave; des femmes.</li>
+</ul>
+
+<p>Mais c&rsquo;est faux. Ce type de conclusion ne peut &ecirc;tre fait que quand vous savez qu&rsquo;une cat&eacute;gorie (type de caf&eacute;) est r&eacute;partie uniform&eacute;ment par rapport &agrave; l&rsquo;autre (sexe). Le fait que le r&eacute;sultat ne soit pas un nombre entier nous rappelle qu&rsquo;on ne peut pas proc&eacute;der ainsi (on ne vend pas de demi-tasse de caf&eacute;).</p>
+
+<p>La seule fa&ccedil;on de vraiment explorer les donn&eacute;es et r&eacute;pondre &agrave; de nouvelles questions (comme &ldquo;Combien de tasses de caf&eacute; noir ont &eacute;t&eacute; vendues &agrave; des femmes en 2000?&rdquo;) est de disposer des donn&eacute;es brutes. Ensuite, il suffit de savoir comment les agr&eacute;ger de fa&ccedil;on appropri&eacute;e.</p>
+</div>
+
+<h2>Donn&eacute;es r&eacute;sum&eacute;es</h2>
+
+<p>Le tableau de <a class="glossterm" href="glossary01.html#record-summary" target="_blank">donn&eacute;es r&eacute;sum&eacute;es</a> ressemble &agrave; ce qu&rsquo;un point de vente de caf&eacute; pourrait produire. Il pr&eacute;sente une colonne d&rsquo;information cat&eacute;gorielle (genre, H/F) et un sous-total pour chaque type de caf&eacute;. Il inclut &eacute;galement le total de chaque type de caf&eacute;.</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Name</th>
+			<th>Sexe</th>
+			<th>Caf&eacute; noir</th>
+			<th>D&eacute;caf&eacute;in&eacute;</th>
+			<th>Mocaccino</th>
+			<th>Total</th>
+		</tr>
+		<tr>
+			<td>Robert Durand</td>
+			<td>H</td>
+			<td>2</td>
+			<td>3</td>
+			<td>1</td>
+			<td>6</td>
+		</tr>
+		<tr>
+			<td>Marie Sante</td>
+			<td>F</td>
+			<td>4</td>
+			<td>0</td>
+			<td>0</td>
+			<td>4</td>
+		</tr>
+		<tr>
+			<td>Philippe Hartin</td>
+			<td>H</td>
+			<td>1</td>
+			<td>2</td>
+			<td>4</td>
+			<td>7</td>
+		</tr>
+		<tr>
+			<td>Marie Brasseur</td>
+			<td>F</td>
+			<td>3</td>
+			<td>1</td>
+			<td>0</td>
+			<td>4</td>
+		</tr>
+		<tr>
+			<td>B&eacute;atrice Condrier</td>
+			<td>F</td>
+			<td>1</td>
+			<td>0</td>
+			<td>0</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>Jean Dupond</td>
+			<td>H</td>
+			<td>2</td>
+			<td>1</td>
+			<td>3</td>
+			<td>6</td>
+		</tr>
+		<tr>
+			<td>Damien Courtier</td>
+			<td>H</td>
+			<td>3</td>
+			<td>1</td>
+			<td>0</td>
+			<td>4</td>
+		</tr>
+		<tr>
+			<td>Suzanne Tremblay</td>
+			<td>H</td>
+			<td>0</td>
+			<td>0</td>
+			<td>1</td>
+			<td>1</td>
+		</tr>
+		<tr class="custom extra-highlight">
+			<td>Total</td>
+			<td>5H, 3F</td>
+			<td>16</td>
+			<td>8</td>
+			<td>9</td>
+			<td>33</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Ce type de tableau est assez familier pour toute personne ayant d&eacute;j&agrave; r&eacute;alis&eacute; une exploration basique de donn&eacute;es dans un outil comme Excel. On peut ajouter des totaux :</p>
+
+<ul>
+	<li>Il y a 5 hommes et 3 femmes</li>
+	<li>Il y a 16 caf&eacute;s noirs, 8 d&eacute;caf&eacute;in&eacute;s, et 9 mocaccinos</li>
+	<li>Nous avons vendu un total de 33 tasses de caf&eacute;</li>
+</ul>
+
+<p>Mais plus important encore, on peut croiser les donn&eacute;es pour r&eacute;pondre &agrave; davantage de questions exploratoires. Par exemple : Est-ce que les femmes pr&eacute;f&egrave;rent un type de caf&eacute; en particulier ? Excel excelle &agrave; faire ce genre de choses, souvent en utilisant un outil appel&eacute; tableau crois&eacute; dynamique.</p>
+
+<p>Ici un tableau pr&eacute;sentant la moyenne du nombre de tasses de Caf&eacute; noir, D&eacute;caf&eacute;in&eacute; et Hocaccino consomm&eacute;es par les hommes et les femmes :</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Etiquettes de lignes</th>
+			<th>Moyenne de caf&eacute; noir</th>
+			<th>Moyenne de d&eacute;caf&eacute;in&eacute;</th>
+			<th>Average of Mocaccino</th>
+		</tr>
+		<tr>
+			<td>F</td>
+			<td>2,67</td>
+			<td>0,33</td>
+			<td>0,00</td>
+		</tr>
+		<tr>
+			<td>H</td>
+			<td>2,00</td>
+			<td>1,75</td>
+			<td>2,00</td>
+		</tr>
+		<tr class="custom extra-highlight">
+			<td>Moyenne pond&eacute;r&eacute;e</td>
+			<td>2,29</td>
+			<td>1,14</td>
+			<td>1,14</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>En regardant ce tableau, on peut voir clairement que les femmes pr&eacute;f&egrave;rent le Caf&eacute; noir et que les hommes se r&eacute;partissent de fa&ccedil;on relativement &eacute;quitable sur les trois cat&eacute;gories<span data-type="footnote">Les donn&eacute;es ne sont pas suffisantes pour valider statistiquement cette affirmation. Mais ces donn&eacute;es sont, de toute fa&ccedil;on fictives, alors arr&ecirc;tez de penser autant &agrave; la consommation de caf&eacute;.</span>.</p>
+
+<p>Cependant le probl&egrave;me avec ces donn&eacute;es, c&rsquo;est qu&rsquo;elles sont toujours <a class="glossterm" href="glossary01.html#aggregation" target="_blank">agr&eacute;g&eacute;es</a> d&#39;une fa&ccedil;on ou d&#39;une autre. Nous avons r&eacute;sum&eacute; les donn&eacute;es selon plusieurs dimensions &ndash; sexe et type de caf&eacute; &ndash; en les agr&eacute;geant par nom de client. Bien que ce ne soit pas des <a class="glossterm" href="glossary01.html#data-raw" target="_blank">donn&eacute;es brutes</a>, nous n&rsquo;en sommes pas &eacute;loign&eacute;s.</p>
+
+<p>Un des bons c&ocirc;t&eacute;s de l&rsquo;agr&eacute;gation est qu&rsquo;elle permet de conserver des ensembles de donn&eacute;es de petite taille. Cela sugg&egrave;re &eacute;galement la fa&ccedil;on dont les donn&eacute;es peuvent &ecirc;tre exploit&eacute;es. Il est assez courant de trouver des donn&eacute;es d&rsquo;enqu&ecirc;te ou de sondage sous cette forme : par exemple, un formulaire Google qui dirait ceci pourrait produire ce type de donn&eacute;es :</p>
+
+<figure><img alt="Google form" src="../images/sections/02/Aggregation-google-form-fr.png" /></figure>
+
+<p>Ce qui permettra de produire les donn&eacute;es suivantes dans le tableau Google ci-dessous :</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Date / Heure</th>
+			<th>Quel est votre nom?</th>
+			<th>Sexe?</th>
+			<th>Caf&eacute; noir</th>
+			<th>D&eacute;caf&eacute;in&eacute;</th>
+			<th>Mocaccino</th>
+		</tr>
+		<tr>
+			<td>17/01/2014 11:12:47</td>
+			<td>Robert Durand</td>
+			<td>Homme</td>
+			<td> </td>
+			<td>4</td>
+			<td>3</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>Utiliser la visualisation pour reveler les variations cachees</h3>
+
+<p>Lorsque vous disposez de donn&eacute;es r&eacute;sum&eacute;es ou de donn&eacute;es brutes, il est courant de les agr&eacute;ger pour les pr&eacute;senter facilement. En pr&eacute;sentant le nombre total de caf&eacute;s consomm&eacute;s (en sommant les colonnes) ou la moyenne du nombre de tasses par client (moyenne de chaque colonne) on rend les donn&eacute;es plus faciles &agrave; comprendre.</p>
+
+<p>Prenons le tableau ci-dessous :</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Name</th>
+			<th>Caf&eacute; noir</th>
+			<th>D&eacute;caf&eacute;in&eacute;</th>
+			<th>Mocaccino</th>
+		</tr>
+		<tr>
+			<td>Robert Durand</td>
+			<td>2</td>
+			<td>3</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>Marie Sante</td>
+			<td>4</td>
+			<td>0</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>Philippe Hartin</td>
+			<td>1</td>
+			<td>2</td>
+			<td>4</td>
+		</tr>
+		<tr>
+			<td>Marie Brasseur</td>
+			<td>3</td>
+			<td>1</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>B&eacute;atrice Condrier</td>
+			<td>1</td>
+			<td>0</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>Jean Dupond</td>
+			<td>2</td>
+			<td>1</td>
+			<td>3</td>
+		</tr>
+		<tr>
+			<td>Damien Courtier</td>
+			<td>3</td>
+			<td>1</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>Suzanne Tremblay</td>
+			<td>0</td>
+			<td>0</td>
+			<td>1</td>
+		</tr>
+		<tr class="custom extra-highlight">
+			<td>Total</td>
+			<td>16</td>
+			<td>8</td>
+			<td>9</td>
+		</tr>
+		<tr class="custom extra-highlight">
+			<td>Moyenne</td>
+			<td>2</td>
+			<td>1</td>
+			<td>1,125</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>On peut pr&eacute;senter la moyenne de tasses de caf&eacute; consomm&eacute;es de chaque type de caf&eacute; sous la forme d&rsquo;un graphique de ce type :</p>
+
+<figure><img alt="Moyenne de tasses consomm&eacute;es" src="../images/sections/02/Aggregation-bar-average-consumed-fr.png" /></figure>
+
+<p>Mais les moyennes cachent des choses. Peut-&ecirc;tre que certaines personnes ont consomm&eacute;es une seule tasse et d&rsquo;autres plusieurs. Il y a plusieurs fa&ccedil;ons de visualiser la distribution ou la variance de donn&eacute;es qui montrent l&rsquo;information sous-jacente. Parmi celles-ci mentionnons les cartes de temp&eacute;ratures, <a class="glossterm" href="glossary01.html#histogram" target="_blank">les histogrammes</a>, et les nuages de points. En conservant les donn&eacute;es sous-jacentes, vous pouvez vous retrouver avec plus d&#39;une variable d&eacute;pendante pour chaque variable ind&eacute;pendante.</p>
+
+<p>Une meilleure visualisation (par exemple sous forme d&#39;histogramme, qui compte combien de personnes entrent dans chaque plage de valeurs qui composent la moyenne) pourrait r&eacute;v&eacute;ler que quelques personnes boivent beaucoup de caf&eacute;, et un grand nombre de personnes en boivent en petite quantit&eacute;.</p>
+
+<p>Prenons cet histogramme du nombre de tasses par client. Tout ce que nous avons fait a &eacute;t&eacute; de d&eacute;nombrer combien de personnes avaient consomm&eacute; une tasse, combien en avaient consomm&eacute; deux, combien en avaient consomm&eacute; trois, et ainsi de suite. Puis nous avons trac&eacute; la fr&eacute;quence de chaque nombre, ce qui explique pourquoi ce type de graphique s&rsquo;appelle un <a class="glossterm" href="glossary01.html#frequency-histogram" target="_blank">histogramme de fr&eacute;quence</a>.</p>
+
+<figure><img alt="Mean vs. Mode" src="../images/sections/02/Aggregation-histogram-mean-mode-fr.png" /></figure>
+
+<p>Le nombre moyen de tasses dans cet ensemble de donn&eacute;es est d&#39;environ 3. Et le<a class="glossterm" href="glossary01.html#mode" target="_blank">mode</a>, ou nombre le plus fr&eacute;quent, est de 2 tasses. Mais comme le montre l&#39;histogramme, il existe trois grands consommateurs de caf&eacute; qui ont chacun consomm&eacute; 7 tasses, poussant la moyenne vers le haut.</p>
+
+<p>En d&#39;autres termes, lorsque vous avez des donn&eacute;es brutes, vous pouvez voir les exceptions et les valeurs aberrantes et vous racontez une histoire plus pr&eacute;cise.</p>
+
+<p>M&ecirc;me ces donn&eacute;es, verbeuses et informatives, ne sont pas des donn&eacute;es brutes : elles sont toujours agr&eacute;g&eacute;es.</p>
+
+<p>L&#39;agr&eacute;gation se produit dans de nombreux cas. Par exemple, un re&ccedil;u de restaurant regroupe habituellement les commandes par table. Il n&#39;y a pas moyen de connaitre ce qu&#39;un individu &agrave; la table a command&eacute; pour le d&icirc;ner, seulement les plats qui ont &eacute;t&eacute; servis &agrave; la table et ce qu&#39;ils co&ucirc;tent. Pour r&eacute;aliser une exploration vraiment d&eacute;taill&eacute;e, nous avons besoin de donn&eacute;es au niveau de la transaction.</p>
+
+<h2>Enregistrements individuels</h2>
+
+<p>Chaque <a class="glossterm" href="glossary01.html#record-transactional" target="_blank">enregistrement de transactions</a> &laquo; capture &raquo; des informations sur un &eacute;v&eacute;nement sp&eacute;cifique. Il n&#39;y a pas d&#39;agr&eacute;gation des donn&eacute;es quel que soit la dimension comme le nom du client (m&ecirc;me si son nom peut ne pas &ecirc;tre &laquo; captur&eacute; &raquo;). Il n&rsquo;est pas modifi&eacute; au fil du temps; c&rsquo;est un instantan&eacute;.</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Date / Heure</th>
+			<th>Name</th>
+			<th>Sexe</th>
+			<th>Coffee</th>
+		</tr>
+		<tr>
+			<td>17:00</td>
+			<td>Robert Durand</td>
+			<td>H</td>
+			<td>Caf&eacute; noir</td>
+		</tr>
+		<tr>
+			<td>17:01</td>
+			<td>Marie Sante</td>
+			<td>F</td>
+			<td>Caf&eacute; noir</td>
+		</tr>
+		<tr>
+			<td>17:02</td>
+			<td>Philippe Hartin</td>
+			<td>H</td>
+			<td>Mocaccino</td>
+		</tr>
+		<tr>
+			<td>17:03</td>
+			<td>Marie Brasseur</td>
+			<td>F</td>
+			<td>D&eacute;caf&eacute;in&eacute;</td>
+		</tr>
+		<tr>
+			<td>17:04</td>
+			<td>B&eacute;atrice Condrier</td>
+			<td>F</td>
+			<td>Caf&eacute; noir</td>
+		</tr>
+		<tr>
+			<td>17:05</td>
+			<td>Jean Dupond</td>
+			<td>H</td>
+			<td>Caf&eacute; noir</td>
+		</tr>
+		<tr>
+			<td>17:06</td>
+			<td>Damien Courtier</td>
+			<td>H</td>
+			<td>Caf&eacute; noir</td>
+		</tr>
+		<tr>
+			<td>17:07</td>
+			<td>Suzanne Tremblay</td>
+			<td>H</td>
+			<td>Mocaccino</td>
+		</tr>
+		<tr>
+			<td>17:08</td>
+			<td>Robert Durand</td>
+			<td>H</td>
+			<td>Caf&eacute; noir</td>
+		</tr>
+		<tr>
+			<td>17:09</td>
+			<td>Marie Sante</td>
+			<td>F</td>
+			<td>Caf&eacute; noir</td>
+		</tr>
+		<tr>
+			<td>17:10</td>
+			<td>Philippe Hartin</td>
+			<td>H</td>
+			<td>Mocaccino</td>
+		</tr>
+		<tr>
+			<td>17:11</td>
+			<td>Marie Brasseur</td>
+			<td>F</td>
+			<td>Caf&eacute; noir</td>
+		</tr>
+		<tr>
+			<td>17:12</td>
+			<td>Jean Dupond</td>
+			<td>H</td>
+			<td>D&eacute;caf&eacute;in&eacute;</td>
+		</tr>
+		<tr>
+			<td>17:13</td>
+			<td>Damien Courtier</td>
+			<td>H</td>
+			<td>Caf&eacute; noir</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Ces enregistrements peuvent &ecirc;tre agr&eacute;g&eacute;s selon chacune de ces colonnes. Les donn&eacute;es temporelles peuvent &eacute;galement &ecirc;tre regroup&eacute;es (par heure, jour ou ann&eacute;e). En fin de compte, l&#39;ensemble de donn&eacute;es initiales de la consommation de caf&eacute; par ann&eacute;e que nous avons vu r&eacute;sulte de ces donn&eacute;es brutes.</p>
+
+<h2>D&eacute;cider comment agr&eacute;ger</h2>
+
+<p>Lorsque nous regroupons des donn&eacute;es dans des cat&eacute;gories ou que nous les transformons de quelque fa&ccedil;on qu&rsquo;il soit, nous enlevons de l&rsquo;information brute. Par exemple, quand nous avons transform&eacute; les transactions brutes en totaux annuels:</p>
+
+<ul>
+	<li>Nous avons anonymis&eacute; les donn&eacute;es en supprimant les noms des clients en les regroupant.</li>
+	<li>Nous avons regroup&eacute; les donn&eacute;es temporelles en les r&eacute;sumant par ann&eacute;e.</li>
+</ul>
+
+<p>Chacune de ces donn&eacute;es aurait pu nous montrer que quelqu&#39;un &eacute;tait un grand buveur de caf&eacute; (en se basant sur la quantit&eacute; de caf&eacute; consomm&eacute;e par une personne, ou sur la base du niveau de consommation par jour). Alors que nous ne pensons pas aux cons&eacute;quences de nos donn&eacute;es sur la consommation de caf&eacute;, supposons que les donn&eacute;es se rapportent plut&ocirc;t &agrave; la consommation d&#39;alcool ? Aurions-nous une obligation morale de pr&eacute;venir quelqu&#39;un si l&rsquo;exploitation des donn&eacute;es montrait qu&#39;une personne boit habituellement beaucoup d&#39;alcool ? Que faire si cette personne tue quelqu&#39;un alors qu&#39;il conduit en &eacute;tat d&#39;&eacute;bri&eacute;t&eacute; ? Est-ce que les donn&eacute;es sur la consommation d&#39;alcool sont sujettes &agrave; des contraintes juridiques diff&eacute;rentes des donn&eacute;es sur la consommation de caf&eacute; ? Sommes-nous autoris&eacute;s &agrave; regrouper certains types de donn&eacute;es, mais pas d&#39;autres ?</p>
+
+<div data-type="example">
+  <p>Peut-on traiter les biais inh&eacute;rents &agrave; la mani&egrave;re d&rsquo;agr&eacute;ger les donn&eacute;es avant de les pr&eacute;senter ?</p>
+  <p>Le mouvement autour du stockage massif de donn&eacute;es (Big Data) va r&eacute;soudre certains de ces biais. En premier lieu, stocker toutes les transactions brutes &eacute;tait techniquement tr&egrave;s compliqu&eacute;. Nous avions &agrave; d&eacute;cider comment agr&eacute;ger les choses au moment de la collecte et jeter l&#39;information brute. Mais les progr&egrave;s dans le stockage, les traitements massivement parall&egrave;les, et l&#39;informatique en nuage (cloud computing) font de l&rsquo;agr&eacute;gation &agrave; la vol&eacute;e de vastes ensembles de donn&eacute;es une r&eacute;alit&eacute;, qui devrait surmonter un certain nombre de <a class="glossterm" href="glossary01.html#bias-aggregation" target="_blank">biais d&#39;agr&eacute;gation</a>.</p>
+</div>
+</section>
+</section>

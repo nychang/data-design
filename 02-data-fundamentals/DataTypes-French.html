@@ -1,0 +1,192 @@
+<section class="blue" data-type="chapter">
+<header>
+  <div class="icon"><img src="../images/sections/02/abacus.png" /></div>
+  <p>Chapitre 1</p>
+  <h1 id="basic-data-types">Les types de donn&eacute;es</h1>
+  <p data-type="author">Par Michael Castello Adapt&eacute; par Jean-Hugues Roy</p>
+</header>
+
+<section data-type="sect1">
+<p>Il est important de conna&icirc;tre les diff&eacute;rents types de donn&eacute;es et de savoir ce qu&#39;il est possible de faire avec chacun afin de collecter les donn&eacute;es qui correspondent le mieux &agrave; vos besoins. Plusieurs typologies existent. Nous en avons choisi une, que nous allons conserver tout au long de cet ouvrage. Dans cette typologie, quatre grands niveaux de mesure sont d&eacute;finis : les donn&eacute;es nominales, les donn&eacute;es ordinales, les donn&eacute;es d&#39;intervalle et les donn&eacute;es de proportion.</p>
+
+<h2>Niveaux de mesure</h2>
+
+<p>Vous avez certainement remarqu&eacute;, lorsque vous faites vos emplettes au supermarch&eacute;, que les produits sont r&eacute;partis dans diff&eacute;rents rayons. Vous pouvez, par exemple, commencer par les fruits et l&eacute;gumes. Vous irez peut-&ecirc;tre prendre quelques viandes au comptoir boucherie et charcuterie. Vous prendrez sans doute du pain au rayon boulangerie, du fromage et du yaourt au rayon des produits laitiers. Enfin, il est possible que vous terminiez par quelques surgel&eacute;s. Une fois &agrave; la caisse, vous aurez donc plusieurs produits dans votre panier. Tous pourront &ecirc;tre class&eacute;s dans une cat&eacute;gorie correspondant aux rayons o&ugrave; vous les aurez pris. Ces cat&eacute;gories sont des donn&eacute;es qu&#39;on dit &laquo; nominales &raquo;. Du latin nomen, qui signifie &laquo; nom &raquo;, les donn&eacute;es nominales sont des donn&eacute;es qu&#39;on ne peut pas placer en ordre. D&#39;un point de vue math&eacute;matique, les fruits et l&eacute;gumes ne sont pas sup&eacute;rieurs ou inf&eacute;rieurs aux viandes.</p>
+
+<h3>Donn&eacute;es nominales</h3>
+
+<p>Les donn&eacute;es nominales peuvent &ecirc;tre compt&eacute;es et on peut s&#39;en servir pour calculer des pourcentages. Mais il est impossible de faire une moyenne &agrave; partir de donn&eacute;es nominales. Ainsi, vous pouvez compter le nombre de produits que vous avez achet&eacute;s dans la section des produits laitiers, par exemple, ou calculer quel pourcentage repr&eacute;sentent les fruits et l&eacute;gumes sur l&#39;ensemble de vos achats. Mais vous ne pouvez pas faire la moyenne des diff&eacute;rentes sections du supermarch&eacute;.</p>
+
+<p>Dans les cas o&ugrave; vous n&#39;avez que deux cat&eacute;gories dans votre jeu de donn&eacute;es, on dit que vous avez des donn&eacute;es dichotomiques. C&#39;est le cas, par exemple, des donn&eacute;es relatives &agrave; des questions auxquelles il n&#39;est possible de r&eacute;pondre que par oui ou par non. Dans votre panier d&#39;&eacute;picerie, vous auriez &eacute;galement pu classer vos achats en fonction du fait qu&#39;ils &eacute;taient, ou non, en solde. Si vous l&#39;aviez fait, vous auriez g&eacute;n&eacute;r&eacute; des donn&eacute;es dichotomiques.</p>
+
+<figure><img alt="Percent of basket" src="../images/sections/02/DataTypes-percent-basket-fr.png" /></figure>
+
+<h3>Donn&eacute;es ordinales</h3>
+
+<p>Mais revenons au supermarch&eacute;. Vous vous appr&ecirc;tez &agrave; passer &agrave; la caisse. Il y a du monde et vous devrez faire la queue. Quelle caisse choisir? Sans compter pr&eacute;cis&eacute;ment le nombre de clients dans chacune des queues, vous les classez mentalement en fonction du temps d&#39;attente que vous estimez. Puis, vous choisissez celle o&ugrave; ce temps sera le plus court. Cette caract&eacute;ristique (le temps d&#39;attente) est une donn&eacute;e ordinale. Vous pouvez placer les caisses en ordre : de celle o&ugrave; le temps d&#39;attente sera le plus long &agrave; celle o&ugrave; il sera le plus court. Un sondage d&#39;opinion qui vous demande si vous &ecirc;tes &laquo; tr&egrave;s favorable &raquo;, &laquo; favorable &raquo;, &laquo; sans opinion &raquo;, &laquo; d&eacute;favorable &raquo; ou &laquo; tr&egrave;s d&eacute;favorable &raquo; recueille des donn&eacute;es ordinales. Chacune de ces cinq opinions n&#39;est pas une valeur math&eacute;matique en elle-m&ecirc;me, mais on peut les placer en ordre. D&#39;ailleurs, les sondeurs attribuent &agrave; ces opinions des nombres afin de faciliter la saisie de donn&eacute;es et le traitement des r&eacute;ponses (on pourra mettre 5 pour une opinion &laquo; tr&egrave;s favorable &raquo; et 1 pour une opinion &laquo; tr&egrave;s d&eacute;favorable &raquo;. Mais ces nombres sont arbitraires et on pourrait tr&egrave;s bien inverser les attributions et donner la cote de 1 pour une opinion &laquo; tr&egrave;s d&eacute;favorable &raquo; et de 5 pour une opinion &laquo; tr&egrave;s favorable &raquo;.</p>
+
+<aside data-type="sidebar">
+  <p>Les nombres que vous choisissez d&#39;attribuer &agrave; des donn&eacute;es ordinales vont avoir une influence sur la fa&ccedil;on avec laquelle vous analyserez vos donn&eacute;es, au final. Mais vous pouvez prendre les nombres que vous voulez, en autant qu&#39;ils soient en ordre.</p>
+
+  <p>Il est plus courant de faire commencer une s&eacute;rie ordinale par 1 ou par 0.</p>
+</aside>
+
+
+<figure><img alt="Scales" src="../images/sections/02/DataTypes-numbering-fr.png" /></figure>
+
+<p>Comme pour les donn&eacute;es nominales, vous pouvez compter les donn&eacute;es ordinales et vous en servir pour calculer des pourcentages. Il y a cependant un d&eacute;bat quant &agrave; savoir s&#39;il est possible ou non de faire la moyenne. Pour certains, il est tout simplement impossible de faire la moyenne entre &laquo; tr&egrave;s favorable &raquo; et &laquo;&nbsp;d&eacute;favorable&nbsp;&raquo; ou entre &laquo; favorable &raquo; et &laquo; neutre &raquo;. Ces cat&eacute;gories ne sont pas des nombres. On peut les remplacer par des nombres, mais ces derniers ne sont qu&#39;une autre fa&ccedil;on de donner un nom &agrave; vos cat&eacute;gories; ils n&#39;ont pas de v&eacute;ritable sens math&eacute;matique.</p>
+
+<p>Pour d&#39;autres, s&#39;il existe une gradation plus ou moins r&eacute;guli&egrave;re entre les diff&eacute;rentes cat&eacute;gories (par exemple, si la diff&eacute;rence entre &laquo; favorable &raquo; et &laquo; neutre &raquo; est la m&ecirc;me qu&#39;entre &laquo; neutre &raquo; et &laquo; d&eacute;favorable &raquo;), il est alors possible de calculer une moyenne avec ces donn&eacute;es.</p>
+
+<aside data-type="sidebar">
+Dans certains domaines, on d&eacute;conseille ce type de calcul, alors que dans d&rsquo;autres domaine, ils sont pratiques courantes. &nbsp;Vous devriez regardez comment vos confr&egrave;res traitent leurs donn&eacute;es ordinales afin de voir quelles sont les pratiques habituelles dans votre secteur d&#39;activit&eacute;.
+</aside>
+
+<h3>Donn&eacute;es d&rsquo;intervalle</h3>
+
+<p>Assez parler des donn&eacute;es ordinales...Retournons au supermarch&eacute;. &nbsp;Vous faites la queue depuis un moment d&eacute;j&agrave; et vous consultez votre montre. Il est 11h30 et vous attendez depuis 11h15. Les heures sont une donn&eacute;e qu&#39;on dit d&#39;intervalle, car les unit&eacute;s de mesure sont &eacute;quidistantes, c&rsquo;est-&agrave;-dire que l&rsquo;intervalle est le m&ecirc;me entre chacun des points pouvant &ecirc;tre mesur&eacute;s. &nbsp;Comme chaque minute compte 60 secondes, &nbsp;la diff&eacute;rence entre 11h15 et 11h30 est la m&ecirc;me qu&#39;entre 12h30 et 12h45, par exemple.</p>
+
+<p>Il est possible d&#39;effectuer des op&eacute;rations math&eacute;matiques &agrave; partir de donn&eacute;es d&#39;intervalle. Mais il ne faut jamais oublier qu&#39;elles n&#39;ont pas de &ldquo;vrai&rdquo; z&eacute;ro. Dans les cas des heures, par exemple, 00h00 ne veut pas dire qu&#39;il y a une absence de temps. &nbsp;C&rsquo;est seulement le d&eacute;but d&rsquo;une nouvelle journ&eacute;e. M&ecirc;me chose avec les temp&eacute;ratures : lorsqu&#39;on passe de 5 &agrave; 10 degr&eacute;s, on ne peut pas dire que la temp&eacute;rature a doubl&eacute;. &nbsp;Et une temp&eacute;rature de z&eacute;ro ne repr&eacute;sente pas une absence de chaleur.</p>
+
+<h3>Donn&eacute;es de ratio</h3>
+
+<p>Votre montre indique 11h30 et vous vous dites : &laquo; J&#39;attends d&eacute;j&agrave; depuis 15 minutes? &raquo; Cette donn&eacute;e (15 minutes d&#39;attente) est une donn&eacute;e qu&#39;on dit de ratio. Les donn&eacute;es de ratio ressemblent aux donn&eacute;es d&rsquo;intervalles, mais, contrairement &agrave; ces derni&egrave;res, elles poss&egrave;dent un &ldquo;vrai&rdquo; z&eacute;ro, c&rsquo;est-&agrave;-dire que le z&eacute;ro indique une valeur nulle. &nbsp;Dans une donn&eacute;e de ratio, le z&eacute;ro signifie r&eacute;ellement l&#39;absence de quelque chose. &nbsp;Avant que vous vous mettiez &agrave; attendre, votre temps d&#39;attente &eacute;tait de z&eacute;ro seconde. Si vous avez z&eacute;ro produit laitier dans votre panier, c&#39;est qu&#39;il n&#39;y a r&eacute;ellement aucun produit laitier.</p>
+
+<p>Les donn&eacute;es d&#39;intervalle et de ratio peuvent &ecirc;tre discr&egrave;tes ou continues. Une donn&eacute;e discr&egrave;te se compte avec des nombres entiers et ne peut pas se briser en fractions. Le nombre de personnes qui fait la queue avec vous est discret : il ne peut pas y avoir un tiers de client. On peut calculer une moyenne de 4,25 clients dans chaque queue, mais le nombre de clients dans chacune doit &ecirc;tre entier. Une donn&eacute;e continue peut prendre n&rsquo;importe quelle valeur sur une &eacute;chelle donn&eacute;e. Normalement, l&rsquo;&eacute;chelle a une limite inf&eacute;rieure et une limite sup&eacute;rieure; toutes les valeurs ne sont pas n&eacute;cessairement possibles. Vous pouvez attendre 7,5 minutes ou acheter un breuvage de 1,5 litres. Il est plus difficile d&rsquo;attendre -3.5 minutes. M&ecirc;me si l&rsquo;&eacute;chelle de temps n&rsquo;inclut pas les valeurs n&eacute;gatives, on parle quand m&ecirc;me de donn&eacute;es continues.</p>
+
+<aside data-type="sidebar">
+Pour ne pas alourdir la pr&eacute;sentation de donn&eacute;es continues, on arrondit les valeurs &agrave; un certain nombre de d&eacute;cimales. Il n&#39;en demeure pas moins qu&#39;elles peuvent prendre en th&eacute;orie une infinit&eacute; de valeurs. &nbsp;Elles ne sont donc pas discr&egrave;tes.
+</aside>
+
+<p>Afin de r&eacute;viser ce qu&#39;on vient d&#39;apprendre, voici le re&ccedil;u de vos achats au supermarch&eacute;. Pouvez-vous identifier les &eacute;l&eacute;ments qui sont des donn&eacute;es nominales, ordinales, d&#39;intervalle et de ratio?</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th colspan="5">Date: 23 sept. 2014 Heure: 11h32</th>
+		</tr>
+		<tr>
+			<th>Article</th>
+			<th>Rayon</th>
+			<th>All&eacute;e</th>
+			<th>Quantit&eacute;</th>
+			<th>Prix (&euro;)</th>
+		</tr>
+		<tr>
+			<td>Oranges&mdash;kg</td>
+			<td>Produits laitiers</td>
+			<td>4</td>
+			<td>2</td>
+			<td>2.58</td>
+		</tr>
+		<tr>
+			<td>Pommes&mdash;kg</td>
+			<td>Produits laitiers</td>
+			<td>4</td>
+			<td>1</td>
+			<td>1.29</td>
+		</tr>
+		<tr>
+			<td>Camembert&mdash;kg</td>
+			<td>Surgel&eacute;s</td>
+			<td>7</td>
+			<td>1</td>
+			<td>3.49</td>
+		</tr>
+		<tr>
+			<td>Lait&mdash;entier&mdash;litre</td>
+			<td>Surgel&eacute;s</td>
+			<td>8</td>
+			<td>1</td>
+			<td>4.29</td>
+		</tr>
+		<tr>
+			<td>Petits pois&mdash;sac</td>
+			<td>Boucherie</td>
+			<td>15</td>
+			<td>1</td>
+			<td>0.99</td>
+		</tr>
+		<tr>
+			<td>Haricots&mdash;sac</td>
+			<td>Boucherie</td>
+			<td>15</td>
+			<td>3</td>
+			<td>1.77</td>
+		</tr>
+		<tr>
+			<td>Tomates</td>
+			<td>Fruits et l&eacute;gumes</td>
+			<td>2</td>
+			<td>4</td>
+			<td>3.92</td>
+		</tr>
+		<tr>
+			<td>Poitrines de poulet</td>
+			<td>Fruits et l&eacute;gumes</td>
+			<td>3</td>
+			<td>2</td>
+			<td>2.38</td>
+		</tr>
+		<tr>
+			<td>Champignons</td>
+			<td>Fruits et l&eacute;gumes</td>
+			<td>2</td>
+			<td>5</td>
+			<td>2.95</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Types de donn&eacute;es ou types de variables</h2>
+
+<p>Sur le web ou dans des ouvrages sp&eacute;cialis&eacute;s, les variables sont g&eacute;n&eacute;ralement d&eacute;crites comme faisant partie de l&#39;un ou l&#39;autre des quatre types vus ci-dessus. &nbsp;Il faut toutefois noter que les variables ne sont pas exclusivement d&#39;un type ou de l&#39;autre. &nbsp;Ce qui d&eacute;termine le type de donn&eacute;es est bien souvent li&eacute; &agrave; la fa&ccedil;on dont la donn&eacute;e a &eacute;t&eacute; collect&eacute;e.</p>
+
+<p>Prenez l&#39;&acirc;ge. &nbsp;L&#39;&acirc;ge est souvent collect&eacute; comme une donn&eacute;e de ratio, mais &nbsp;aussi comme une donn&eacute;e ordinale. Si on demande dans un sondage : &laquo; Quel &acirc;ge avez-vous? &raquo;, on recueillera des donn&eacute;es de ratio. Si on demande plut&ocirc;t : &laquo; Dans quel groupe d&#39;&acirc;ge vous situez-vous? &raquo; et qu&#39;on offre diff&eacute;rents choix de r&eacute;ponse (18-24, 25-34, etc), on recueillera alors des donn&eacute;es ordinales. &nbsp;La m&ecirc;me variable conduit &agrave; diff&eacute;rents types de donn&eacute;es en fonction de la m&eacute;thode de cueillette.</p>
+
+<p>R&egrave;gle g&eacute;n&eacute;rale, il est possible de reculer dans les niveaux de mesure, mais pas d&#39;avancer. &nbsp;Cela veut dire que si vous recueillez des donn&eacute;es d&#39;intervalle et de ratio, vous pouvez &eacute;galement les recueillir comme des donn&eacute;es nominales ou ordinales. Cependant, si une variable ne peut &ecirc;tre que nominale, comme les rayons &nbsp;du supermarch&eacute;, par exemple, il est impossible de la recueillir comme une donn&eacute;e ordinale, d&#39;intervalle ou de ratio. &nbsp;Quant au variables qui sont intrins&egrave;quement ordinales, elles ne peuvent &ecirc;tre recueillies comme ratio ou intervalle, mais peuvent tr&egrave;s bien devenir nominales. &nbsp; Toutefois, plusieurs des variables recueillies comme ordinales ont une variable similaire qui peut &ecirc;tre collect&eacute;e comme intervalle ou ratio comme le montre le tableau suivant.</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Type de variable ordinale</th>
+			<th>Corresponding Donn&eacute;es d&rsquo;intervalle/Donn&eacute;es de ratio Level Measure</th>
+			<th>Exemple</th>
+		</tr>
+		<tr>
+			<td>Rang</td>
+			<td>Type de mesure sur lequel est bas&eacute; le rang</td>
+			<td>Enregistrez le temps des coureurs dans une course, plut&ocirc;t que leur seul rang</td>
+		</tr>
+		<tr>
+			<td>&Eacute;chelle</td>
+			<td>Nombre lui-m&ecirc;me</td>
+			<td>Enregistrez l&#39;&acirc;ge d&#39;une personne, plut&ocirc;t que son groupe d&#39;&acirc;ge</td>
+		</tr>
+		<tr>
+			<td>&Eacute;chelle de substitution</td>
+			<td>Nombres &agrave; partir desquels on a construit cette &eacute;chelle</td>
+			<td>Enregistrez la note chiffr&eacute;e d&#39;un &eacute;tudiant (88%), plut&ocirc;t qu&#39;une note lettr&eacute;e (B+)</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Rappelez-vous que la r&egrave;gle g&eacute;n&eacute;rale que nous venons d&#39;&eacute;noncer s&#39;applique &eacute;galement dans les &eacute;tapes d&#39;analyse et de pr&eacute;sentation visuelle de vos donn&eacute;es. Si vous r&eacute;cup&eacute;rez une variable faite de donn&eacute;es de ratio, il vous sera toujours possible, &agrave; une &eacute;tape ult&eacute;rieure, de faire des regroupements qui vous permettront de mieux la pr&eacute;senter. Mais l&#39;inverse ne sera pas possible. Par exemple, si vous recueillez l&#39;&acirc;ge de vos r&eacute;pondants dans un sondage, vous pourrez toujours pr&eacute;senter vos donn&eacute;es de fa&ccedil;on continue, regroup&eacute;e par cat&eacute;gories ou en faisant des moyennes. Mais si vous demandez &agrave; vos r&eacute;pondants &agrave; quel groupe d&#39;&acirc;ge ils appartiennent, vous ne pourrez pas &laquo; revenir en arri&egrave;re &raquo; et calculer l&#39;&acirc;ge moyen de vos r&eacute;pondants.</p>
+
+<p>Quand c&rsquo;est possible, vous devriez toujours recueillir vos donn&eacute;es au plus haut niveau de mesure possible. Il n&rsquo;y a rien de plus frustrant que de se rendre compte que vous ne pouvez pas faire la visualisation que vous voulez parce que vous n&#39;avez pas le bon type de donn&eacute;es.</p>
+
+<h2>Autres termes importants</h2>
+
+<p>Si vous lisez d&rsquo;autres articles ou livres sur les donn&eacute;es, vous rencontrerez d&#39;autres fa&ccedil;ons de les d&eacute;crire dont nous ne nous servirons pas dans cet ouvrage. Il n&#39;y a pas d&#39;unanimit&eacute; sur la typologie des donn&eacute;es et nous en avons choisi une. Nous vous en parlons et nous en faisons une br&egrave;ve d&eacute;finition ci-dessous afin que vous soyez au courant de leur existence si vous les rencontrez dans d&#39;autres publications.</p>
+
+<h3>Donn&eacute;es cat&eacute;gorielles</h3>
+
+<p>Quand nous avons d&eacute;crit les donn&eacute;es nominales et ordinales, nous avons dit qu&#39;elles permettaient toutes deux de classer vos donn&eacute;es en diff&eacute;rentes cat&eacute;gories. Certains auteurs regroupent ces deux types en un seul : les &laquo; donn&eacute;es cat&eacute;gorielles &raquo; (ou &laquo; cat&eacute;goriques &raquo;). Ils font cependant une distinction entre les donn&eacute;es cat&eacute;gorielles ordonn&eacute;es (donn&eacute;es ordinales) et non-ordonn&eacute;es (donn&eacute;es nominales). D&#39;autres auteurs donnent aux donn&eacute;es nominales le nom de &laquo; cat&eacute;gorielles &raquo; et utilisent les deux termes comme des synonymes. Cependant, ils les distinguent des donn&eacute;es ordinales, comme nous le faisons.</p>
+
+<h3>Donn&eacute;es qualitatives et quantitatives</h3>
+
+<p>Grosso modo, les &laquo; donn&eacute;es quantitatives &raquo; sont des donn&eacute;es qu&#39;on peut quantifier ou calculer. &nbsp;Elles son faites de nombres. Celles qu&rsquo;on ne peut pas quantifier sont appel&eacute;es &laquo; donn&eacute;es quanlitatives &raquo;. &nbsp;Ce sont des donn&eacute;es qui ne sont pas num&eacute;riques. Un certain consensus existe quant &agrave; l&#39;utilisation de ces termes. Certaines donn&eacute;es sont toujours qualitatives, comme les observations directes sur le terrain ou les entrevues dirig&eacute;es ou semi-dirig&eacute;es en sciences sociales. D&#39;autres sont toujours quantitatives, comme les donn&eacute;es d&#39;intervalle et de ratio, puisqu&#39;elles sont toujours faites de nombres. Il peut y avoir d&eacute;bat en ce qui concerne les donn&eacute;es nominales et ordinales. Pour certains, il s&#39;agit de donn&eacute;es qualitatives, puisqu&#39;elles classent les donn&eacute;es en cat&eacute;gories qui sont essentiellement descriptives. D&#39;autres affirment que, puisque ce type de donn&eacute;es peut &ecirc;tre utilis&eacute; pour calculer des pourcentages, voire des moyennes, il s&#39;agit de donn&eacute;es quantitatives.</p>
+
+<p>Afin d&#39;&eacute;viter toute confusion, nous nous en tiendrons aux quatre niveaux de mesure que nous avons d&eacute;crits ci-dessus tout au long de cet ouvrage&hellip; sauf dans le chapitre concernant l&#39;&eacute;laboration d&#39;un questionnaire o&ugrave; il sera question de donn&eacute;es qualitatives.</p>
+</section>
+</section>
