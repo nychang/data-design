@@ -1,6 +1,6 @@
 <section class="yellow" data-type="chapter">
 <header>
- <div class="icon"><img src="../images/sections/04/camera.png" /></div>
+ <div class="icon"><img src="../images/sections/04/Transformations-icon-camera-fr.png" /></div>
  <p>Chapitre 11</p>
  <h1>Transformations de donn&eacute;es</h1>
  <p data-type="author">Par Kiran PV Adapt&eacute; par Laurent Nepveu</p>
@@ -29,25 +29,25 @@
 
 <h3>Distribution normale</h3>
 
-<figure><img alt="Normal distribution" src="../images/sections/04/normal-distribution.png" /></figure>
+<figure><img alt="Normal distribution" src="../images/sections/04/Transformations-normal-distribution-fr.png" /></figure>
 
 <h3>D&eacute;sax&eacute;e vers la gauche</h3>
 
-<figure><img alt="Left skew" src="../images/sections/04/left-skew.png" /></figure>
+<figure><img alt="Left skew" src="../images/sections/04/Transformations-left-skew-fr.png" /></figure>
 
 <h3>D&eacute;sax&eacute;e vers la droite</h3>
 
-<figure><img alt="Normal distribution" src="../images/sections/04/right-skew.png" /></figure>
+<figure><img alt="Normal distribution" src="../images/sections/04/Transformations-right-skew-fr.png" /></figure>
 
 <h2>Un exemple de transformations avec un &eacute;chantillon de donn&eacute;es r&eacute;elles</h2>
 
 <p>Consid&eacute;rons des donn&eacute;es de population et de superficie des 50 &eacute;tats am&eacute;ricains en 2012 pour comprendre comment les transformations de donn&eacute;es peuvent vous aider &agrave; analyser et visualiser vos donn&eacute;es. La premi&egrave;re &eacute;tape consiste &agrave; &eacute;valuer la distribution des variables analys&eacute;es. C&#39;est en &eacute;valuant la distribution de vos donn&eacute;es brutes que vous d&eacute;ciderez si des transformations sont n&eacute;cessaires. Pour se faire une id&eacute;e de la distribution de nos donn&eacute;es, d&eacute;butons avec un histogramme de la variable de population et un nuage de points des variables de superficie et de population.</p>
 
-<figure><img alt="Untransformed population values" src="../images/sections/04/untransformed-population-values.png" /></figure>
+<figure><img alt="Untransformed population values" src="../images/sections/04/Transformations-untransformed-population-histogram-fr.png" /></figure>
 
 <p>L&#39;histogramme ci-dessus montre que la distribution de la variable de population est biais&eacute;e &agrave; droite. Ceci est attendu puisque la plupart des &eacute;tats am&eacute;ricains ont une population de moins de 10 millions d&#39;habitants. Il est donc clair que si nous voulons effectuer des tests statistiques qui requi&egrave;rent une distribution normale, ces donn&eacute;es devront &ecirc;tre transform&eacute;es.</p>
 
-<figure><img alt="Population scatter plot" src="../images/sections/04/population-scatter.png" /></figure>
+<figure><img alt="Population scatter plot" src="../images/sections/04/Transformations-clustered-population-scatterplot-fr.png" /></figure>
 
 <p>Le nuage de points ci-dessus pr&eacute;sente la population sur l&#39;axe des Y et la superficie sur l&#39;axe des X. On y voit que la plupart des points sont concentr&eacute;s entre 0 et 10 millions de population et sous les 400 000 kilom&egrave;tres carr&eacute;s. En utilisant les &eacute;chelles non transform&eacute;es, il est difficile de bien voir la relation entre la population et la superficie. Les valeurs hors normes (ou valeurs ab&eacute;rrantes) de l&#39;Alaska et de la Californie font en sorte qu&#39;on ne peut pas simplement agrandir les axes. Il faudra proc&eacute;der &agrave; une transformation.</p>
 
@@ -57,17 +57,17 @@
 
 <p>La <a class="glossterm" href="glossary01.html#transformation-log" target="_blank">transformation logarithmique</a> consiste tout simplement &agrave; appliquer la fonction log &agrave; chacune des valeurs de la variable &agrave; transformer. Vous utilisez ensuite dans votre analyse la nouvelle variable constitu&eacute;e des r&eacute;sultats de la fonction log au lieu des donn&eacute;es originales. Cette transformation a un impact marqu&eacute; sur la distribution d&#39;une variable. Elle permet en g&eacute;n&eacute;ral de rapprocher des valeurs extr&ecirc;mes pour obtenir des graphes de distribution moins &eacute;tendus. Les deux graphes ci-dessous montrent d&#39;une part la variable population &agrave; laquelle on a appliqu&eacute; la fonction logarithme naturel et, d&#39;autre part, le m&ecirc;me nuage de points que pr&eacute;c&eacute;demment, mais auquel on a appliqu&eacute; la fonction logarithme naturel sur les deux variables de population et superficie.</p>
 
-<figure><img alt="Log transformed population values" src="../images/sections/04/log-transformed.png" /></figure>
+<figure><img alt="Log transformed population values" src="../images/sections/04/Transformations-log-transformed-histogram-fr.png" /></figure>
 
-<figure><img alt="Log transformed scatter plot" src="../images/sections/04/log-scatter.png" /></figure>
+<figure><img alt="Log transformed scatter plot" src="../images/sections/04/Transformations-log-transformed-scatterplot-fr.png" /></figure>
 
 <h3>Transformation racine carr&eacute;e</h3>
 
 <p>La <a class="glossterm" href="glossary01.html#transformation-square" target="_blank">transformation racine carr&eacute;e</a> consiste &agrave; calculer la racine carr&eacute;e de chacune des valeurs d&#39;une variable d&#39;un jeu de donn&eacute;es et d&#39;utiliser cette r&eacute;sultante dans notre analyse. Cette transformation a un impact plus mod&eacute;r&eacute; sur la distribution. Les deux graphes ci-dessous montrent la distribution de la population &agrave; laquelle on a appliqu&eacute; une racine carr&eacute;e, ainsi que le nuage de points, toujours de la population par rapport &agrave; la superficie, auquel on a appliqu&eacute; la racine carr&eacute;e aux deux variables.</p>
 
-<figure><img alt="Carr&eacute; root transformed population values" src="../images/sections/04/square-root.png" /></figure>
+<figure><img alt="Carr&eacute; root transformed population values" src="../images/sections/04/Transformations-square-root-transformed-histogram-fr.png" /></figure>
 
-<figure><img alt="Carr&eacute; root transformed population values" src="../images/sections/04/sqrt-scatter.png" /></figure>
+<figure><img alt="Carr&eacute; root transformed population values" src="../images/sections/04/Transformations-square-root-transformed-scatterplot-fr.png" /></figure>
 
 <h2>Choisir la bonne transformation</h2>
 
