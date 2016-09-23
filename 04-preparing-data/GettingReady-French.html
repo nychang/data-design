@@ -1,0 +1,338 @@
+<section class="green" data-type="chapter">
+<header>
+ <div class="icon"><img src="../images/sections/04/GettingReady-icon-spreadsheet-fr.png" /></div>
+ <p>Chapitre 7</p>
+ <h1>Pr&eacute;parer les donn&eacute;es pour le nettoyage</h1>
+ <p data-type="author">Par Oz du Soleil Adapt&eacute; par Youssef Ennahdi</p>
+</header>
+
+<section data-type="sect1">
+<p>Il est difficile d&rsquo;apprendre et d&rsquo;enseigner &agrave; pr&eacute;parer ses donn&eacute;es pour qu&rsquo;elles soient utiles.  Certaines op&eacute;rations pr&eacute;paratoires sont requises, particuli&egrave;rement si vous travaillez avec des donn&eacute;es que vous n&rsquo;avez pas collect&eacute;es vous-m&ecirc;mes. Bien que beaucoup de ces actions soient automatisables, un travail manuel est souvent n&eacute;cessaire, ne serait-ce que pour bien d&eacute;finir les t&acirc;ches &agrave; accomplir durant <a class="glossterm" target="_blank" href="glossary01.html#preparation-data">la pr&eacute;paration des donn&eacute;es</a>. C&rsquo;est pour cette raison que certains d&eacute;testent cette partie du travail...mais quelqu&rsquo;un doit bien s&rsquo;en occuper !</p>
+
+<p>Que vous soyez un analyste travaillant sur des milliards de donn&eacute;es ou sur une simple liste de 90 contacts, vous ferez certainement face, &agrave; un moment ou &agrave; un autre, &agrave; des donn&eacute;es &ldquo;sales&rdquo;. Malheureusement, la pr&eacute;paration des donn&eacute;es n&rsquo;est pas toujours facile et il n&rsquo;y a d&#39;ailleurs pas qu&rsquo;une seule mani&egrave;re de s&rsquo;y prendre. Chaque jeu de donn&eacute;es est unique et vous n&rsquo;utiliserez peut-&ecirc;tre certaines techniques qu&rsquo;une seule fois dans votre carri&egrave;re, comme vous le verrez dans les exemples suivants.</p>
+
+
+<h2>S&eacute;parer les donn&eacute;es</h2>
+
+<p>La premi&egrave;re phase de pr&eacute;paration consiste &agrave; s&eacute;parer les donn&eacute;es en champs que vous pourrez utiliser facilement par la suite.</p>
+
+<p>Avez-vous d&eacute;j&agrave; re&ccedil;u un ensemble de donn&eacute;es dans lequel vous ne pouviez pas directement r&eacute;cup&eacute;rer les informations dont vous aviez besoin ? Peut-&ecirc;tre qu&rsquo;une liste d&rsquo;adresses ne provenait que d&rsquo;un seul champ (no.civique, ville et pays dans la m&ecirc;me entr&eacute;e), vous emp&ecirc;chant ainsi de tirer des statistiques sur les villes et les pays. Ou alors, un fournisseur vous a envoy&eacute; une liste d&rsquo;inventaire contenant 6000 pi&egrave;ces num&eacute;rot&eacute;es, mais son syst&egrave;me de num&eacute;rotation combinait code d&rsquo;entrep&ocirc;t et num&eacute;ro de pi&egrave;ce alors que vous n&rsquo;aviez besoin que des num&eacute;ros de pi&egrave;ce.</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Vous voulez</th>
+			<th>Ils fournissent</th>
+		</tr>
+		<tr>
+			<td>C77000S</td>
+			<td>GA3C77000S</td>
+		</tr>
+		<tr>
+			<td>W30000P</td>
+			<td>GA1W30000P</td>
+		</tr>
+		<tr>
+			<td>D21250G</td>
+			<td>DE1D21250G</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Consid&eacute;rez les probl&egrave;mes pr&eacute;sents dans le jeu de donn&eacute;es suivant:</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Centre marchand</th>
+			<th>Adresse</th>
+			<th>Ville</th>
+			<th>R&eacute;gion</th>
+		</tr>
+		<tr>
+			<td><b>Warm Willows Centre marchand</b> Peters Road Marrison, MI</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><b>Jaspers</b> Martinson &amp; Timberlake Rds Reed, FL</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><b>Lara Lafayette Shoppes</b> 17 Industrial Drive Elm, CT</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Vous voudriez que le nom du centre marchand, son adresse, sa vielle et sa r&eacute;gion soient entrepos&eacute;s dans des champs diff&eacute;rents. Le jeu de donn&eacute;es contient des centaines d&rsquo;enregistrements et les diviser manuellement prendrait beaucoup de temps. Les centres marchands sont &eacute;crits en caract&egrave;res gras, ce qui facilite la distinction entre la fin de leurs noms et le d&eacute;but des adresses.  Toutefois, comme les adresses ne commencent pas toutes par des chiffres, on ne peut pas utiliser un outil standardis&eacute; pour les s&eacute;parer des noms.  On pourrait &eacute;crire un programme qui distinguerait le texte &eacute;crit en caract&egrave;res gras pour le s&eacute;parer du reste.  Comme ce type d&rsquo;entr&eacute;e est rare, il est probable qu&rsquo;un tel programme ne serve qu&rsquo;une seule fois.</p>
+
+<p>Nonus ne pouvons pas vous enseigner tout ce qu&rsquo;il y a &agrave; savoir sur la s&eacute;paration de donn&eacute;es dans ce chapitre car chaque cas est unique. Cependant, il existe des techniques qui sont utiles dans plusieurs  situations. Nonus vous montrerons certaines d&rsquo;entre elles et aborderons certains d&eacute;fis (et leurs causes) afin de vous mettre sur la bonne voie.</p>
+
+<h2>Allons-y</h2>
+
+<p>Un exemple simple rencontr&eacute; par plusieurs est la s&eacute;paration des noms de famille et des pr&eacute;noms. Vous recevrez peut-&ecirc;tre un jeu de donn&eacute;es o&ugrave; les noms complets existent dans un champ alors que vous avez besoin d&rsquo;avoir des noms de familles et pr&eacute;noms s&eacute;par&eacute;s, ou alors la s&eacute;paration a d&eacute;j&agrave; &eacute;t&eacute; effectu&eacute;e mais certains enregistrements contiennent les deux informations dans un seul de ces champs.</p>
+
+<table>
+	<tbody>
+		<tr>
+			<td>Dans un seul champ:
+			<table>
+				<tbody>
+					<tr>
+						<th>Nom</th>
+					</tr>
+					<tr>
+						<td>Marc Allard</td>
+					</tr>
+					<tr>
+						<td>Fumi Takano</td>
+					</tr>
+					<tr>
+						<td>&Eacute;lise Martin</td>
+					</tr>
+					<tr>
+						<td>&Eacute;mile Perez</td>
+					</tr>
+					<tr>
+						<td>Michel Laumont</td>
+					</tr>
+					<tr>
+						<td>Lise Desjardins</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+			<td>Deux champs, mais l&rsquo;information n&rsquo;est pas toujours correcte:
+			<table>
+				<tbody>
+					<tr>
+						<th>Pr&eacute;nom</th>
+						<th>Nonm de famille</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Marc Allard</td>
+					</tr>
+					<tr>
+						<td>Fumi Takano</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>&Eacute;lise</td>
+						<td>Martin</td>
+					</tr>
+					<tr>
+						<td>&Eacute;mile Perez</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Michel</td>
+						<td>Laumont</td>
+					</tr>
+					<tr>
+						<td>Lise</td>
+						<td>Desjardins</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Quand nous recevons de telles donn&eacute;es, le probl&egrave;me semble facile &agrave; r&eacute;soudre. Il existe une mani&egrave;re triviale de s&eacute;parer les pr&eacute;noms et noms de famille pour Marc, Fumi et &Eacute;mile: on recherche d&rsquo;abord le caract&egrave;re espace entre les deux mots et on coupe la donn&eacute;e en deux. Voil&agrave;!</p>
+
+<p>C&rsquo;est assez simple en th&eacute;orie, mais en pratique, tout se complique rapidement. Que faire, par exemple, si votre ensemble de donn&eacute;es contient des milliers d&rsquo;enregistrements ? Vous passerez beaucoup de temps &agrave; diviser les noms manuellement et il y a potentiellement beaucoup plus de cas posant probl&egrave;me que  simplement la concat&eacute;nation du pr&eacute;nom et du nom de famille.  Le tableau suivant en &eacute;num&egrave;re quelques-uns.  </p>
+
+<table>
+	<tbody>
+		<tr>
+			<td>Initiales</td>
+			<td>Jean M. Le Clezio</td>
+		</tr>
+		<tr>
+			<td>D&eacute;signation professionnelle</td>
+			<td>L&eacute;o Carson, Directeur</td>
+		</tr>
+		<tr>
+			<td>2-part Nonm de familles</td>
+			<td>Charles de Gaulle</td>
+		</tr>
+		<tr>
+			<td>Pr&eacute;fixes</td>
+			<td>Dr Herman Wilheim</td>
+		</tr>
+		<tr>
+			<td>Suffixes</td>
+			<td>Jean-Marie Cusson Junior</td>
+		</tr>
+		<tr>
+			<td>Hyphenated Nonm de familles</td>
+			<td>Julie Baker-Andersen</td>
+		</tr>
+		<tr>
+			<td>Nonm de famille First</td>
+			<td>Kincaid, Paul</td>
+		</tr>
+		<tr>
+			<td>Pr&eacute;nom compos&eacute;</td>
+			<td>Pierre Paolo Lipscomb</td>
+		</tr>
+		<tr>
+			<td>Pr&eacute;fixes et Suffixes</td>
+			<td>Dr L&eacute;on St-Andr&eacute;-Fernandez Junior</td>
+		</tr>
+		<tr>
+			<td>Autres champs non d&eacute;sir&eacute;s  inclus</td>
+			<td>Edgar Murray 465 Rue de l&rsquo;Arm&eacute;e</td>
+		</tr>
+		<tr>
+			<td>Pr&eacute;nom absent</td>
+			<td>Drolet</td>
+		</tr>
+		<tr>
+			<td>Non/Missing Nonm de famille</td>
+			<td>Lison</td>
+		</tr>
+		<tr>
+			<td>Information manquante (aucun nom!)</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Aucune id&eacute;e!</td>
+			<td>JJ</td>
+		</tr>
+		<tr>
+			<td>Pas un nom de personne!</td>
+			<td>Nonrth Ville Garden Supply</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>L&rsquo;heure des d&eacute;cisions</h2>
+
+<p>Supposons que nous ayons &agrave; s&eacute;parer les noms de mani&egrave;re &agrave; pouvoir les classer par nom de famille et que notre liste contienne 500 noms (trop longue pour &ecirc;tre modifi&eacute;e &agrave; la main).</p>
+
+<p>Avant de commencer, nous devons en apprendre davantage :</p>
+
+<ul>
+	<li>Pourquoi est-il si important d&rsquo;ordonner la liste finale selon ce champ sp&eacute;cifique? Avoir les noms complets dans un seul champ pose-t-il probl&egrave;me ?</li>
+	<li>&Agrave; quoi doit ressembler le r&eacute;sultat ?
+	<ul>
+		<li>Est-il important de garder &laquo; Dr &raquo; et de cr&eacute;er un champ suppl&eacute;mentaire pour les titres tels que &laquo; Mgr &raquo; (Monseigneur), &laquo; Me &raquo; (Ma&icirc;tre), etc ?</li>
+		<li>Les particules  (par exemple Junior) doivent-elles rester avec le patronyme ou doit-on cr&eacute;er un nouveau champ ?</li>
+		<li>Doit-on garder les initiales ? Dans un champ qui leur est propre ? Avec le pr&eacute;nom ? Avec le nom de famille ?</li>
+		<li>Veut-on garder les d&eacute;signations professionnelles ?</li>
+	</ul>
+	</li>
+	<li>Le jeu en vaut-il la chandelle? Pour les cas les plus simples, vous pourriez utiliser une tierce personne pour effectuer ce travail, mais cela n&rsquo;est peut-&ecirc;tre pas id&eacute;al pour les cas plus complexes. Que r&eacute;pondre si un professionnel vous demande 1000 dollars pour r&eacute;aliser ce travail ?</p><p></li>
+	<li>Que faire des entr&eacute;es incompl&egrave;tes ou incorrectes ?</li>
+</ul>
+
+<p>Les r&eacute;ponses devront &ecirc;tre fournies avant de commencer &agrave; travailler sur vos donn&eacute;es. Prendre ces d&eacute;cisions peut r&eacute;ellement rendre le proc&eacute;d&eacute; plus facile. Par exemple, si vous d&eacute;cidez que les d&eacute;signations professionnelles n&rsquo;ont aucune importance, il y a peut-&ecirc;tre une mani&egrave;re simple de s&rsquo;en d&eacute;barrasser et faciliter d&rsquo;autres parties du projet.</p>
+
+<p>Supposons que vous travaillez sur une liste de 20 000 noms, 19 4000 viennent de France et 600 de Turquie. Les titres honorifiques en France viennent avant le nom (par exemple, Dr Jean Dupont), alors qu&rsquo;ils sont plac&eacute;s apr&egrave;s celui-ci en Turquie (par exemple, Li Tintonpor Dr).  Vous essayez de savoir s&rsquo;il faut cr&eacute;er un nouveau champ pour les noms turcs ou carr&eacute;ment cr&eacute;er un nouveau jeu de donn&eacute;es.  Vous demandez au client. </p>
+
+<p>Sa r&eacute;ponse est simple. Ils ne font pas d&rsquo;affaires en Turquie et ne tiennent pas particul&egrave;rement &agrave; conserver ces enregistrements.  Vous pouvez donc les effacer.  Et voil&agrave;!  plus que 19 400 noms &agrave; traiter.</p>
+
+<h2>Comment s&eacute;parer ces donn&eacute;es?</h2>
+
+<p>Il y a tellement de techniques que nous pourrions &eacute;crire un livre entier sur ce seul sujet. Vous pourriez diviser les informations dans Excel, ou, si vous avez des connaissances en programmation, vous pourriez utiliser Python, SQL, ou n&rsquo;importe quel autre langage pour s&eacute;parer les donn&eacute;es.  Il y a trop de choses &agrave; pr&eacute;senter pour que nous puissions les couvrir dans ce chapitre, mais pour une bonne liste de r&eacute;f&eacute;rences, veuillez consulter notre <a href="app02.html">appendice</a>. Pour l&rsquo;instant, nous nous contenterons de couvrir les techniques de base de mani&egrave;re &agrave; vous pr&eacute;parer &agrave; utiliser ces r&eacute;f&eacute;rences quand vous serez pr&ecirc;t.</p>
+
+<div data-type="warning"><p>Commencez toujours par faire une copie de vos donn&eacute;es avant de commencer leur pr&eacute;paration ou leur nettoyage de mani&egrave;re &agrave; vous r&eacute;f&eacute;rer &agrave; la version originale si l&rsquo;un de vos changements s&rsquo;av&eacute;rait incorrect.</p><p></p></div>
+
+<figure><img alt="Strategy tips" src="../images/sections/04/GettingReady-separation-strategies-fr.png" /></figure>
+
+<h3>COMMENCEZ EN BAS</h3>
+
+<p>La plupart du temps, la donn&eacute;e qu&rsquo;il faut s&eacute;parer est assez simple. Prenons  une liste de 500 noms. De ces 500 noms, vous d&eacute;couvrirez peut-&ecirc;tre que 200 d&rsquo;entre eux n&rsquo;ont aucun probl&egrave;me; ils pr&eacute;sentent un pr&eacute;nom et un nom de famille s&eacute;part&eacute; par un espace. Mettez-les de c&ocirc;t&eacute;. N&rsquo;y touchez pas. Puis tournez-vous vers les 300 autres.</p>
+
+<h3>IDENTIFIEZ LES ANOMALIES</h3>
+
+<p>Cherchez dans le jeu de donn&eacute;es les entr&eacute;es sans information, les noms compliqu&eacute;s, les noms incomplets, les noms qui ne sont pas des noms d&rsquo;individus et tous les enregistrements que vous ne savez pas comment traiter. Mettez-les de c&ocirc;t&eacute;. Nonus supposerons que cela correspond &agrave; 40 noms.</p>
+
+<h3>CHERCHER LES SIMILARIT&Eacute;S</h3>
+
+<p>Des 260 noms restants, peut-&ecirc;tre que 60 sont complexifi&eacute;s par du charabia professionnel apr&egrave;s le nom proprement dit. Que vous effaciez ces qualifications professionnelles ou que vous les mettiez dans leur propre champ s&eacute;par&eacute; du nom complet, faites la modification en une seule fois. D&eacute;sormais, ces d&eacute;signations professionnelles sont s&eacute;par&eacute;es (ou effac&eacute;es) et votre champ ne contient plus qu&rsquo;un pr&eacute;nom et un nom de famille s&eacute;par&eacute; par un espace.  Ces 60 entr&eacute;es peuvent &ecirc;tre ajout&eacute;es aux 200 noms que nous avons identifi&eacute;s au d&eacute;but du traitement. </p>
+
+<p>Nonus mettrons les noms &agrave; particules et autres types particuliers dans des groupes &agrave; part.</p>
+
+<h3>EFFORT MANUEL</h3>
+
+<p>Les 40 anomalies identifi&eacute;es au commencement peuvent potentiellement &ecirc;tre corrig&eacute;es manuellement.</p>
+
+<div data-type="note">
+<p>Parfois, quand nous traitons des donn&eacute;es, certains probl&egrave;mes disparaissent d&rsquo;eux-m&ecirc;me lorsque nous portons attention aux donn&eacute;es. Par exemple, un enregistrement sans information peut simplement &ecirc;tre le duplicata d&rsquo;un autre enregistrement qui lui est complet. Dans ce cas, nous pouvons simplement effacer l&rsquo;entr&eacute;e erron&eacute;e et passer &agrave; la suite.</p>
+</div>
+
+<figure><img alt="Separating data workflow" src="../images/sections/04/GettingReady-separation-flowchart-fr.png" /></figure>
+
+<h2>Probl&egrave;mes communs</h2>
+
+<p>D&eacute;pendant de la fa&ccedil;on dont les donn&eacute;e ont &eacute;t&eacute; collect&eacute;es, il y a d&rsquo;autres champs qu&rsquo;il sera int&eacute;ressant de diviser en m&ecirc;me temps que vous s&eacute;parez les noms. Les plus communs sont :</p><p></p>
+
+<ul>
+	<li>
+	<p>Adresses</p>
+	</li>
+	<li>
+	<p><span style="line-height: 1.5em;">Num&eacute;ros de t&eacute;l&eacute;phone, surtout si vous d&eacute;sirez avoir l&rsquo;indicatif s&eacute;par&eacute;</p><p></span></p>
+	</li>
+	<li>
+	<p><span style="line-height: 1.5em;">Courriels, si les informations de domaine vous int&eacute;ressent</span></p>
+	</li>
+	<li>
+	<p><span style="line-height: 1.5em;">Dates, si vous voulez seulement l&rsquo;ann&eacute;e ou le mois</span></p>
+	</li>
+</ul>
+
+<h3>UNIT&Eacute;S DE MESURE ET CONVERSION</h3>
+
+<p>Une autre t&acirc;che importante durant la pr&eacute;paration des donn&eacute;es est de s&rsquo;assurer que toutes les valeurs d&rsquo;un m&ecirc;me champ ont la m&ecirc;me unit&eacute;. Id&eacute;alement, vous aurez sp&eacute;cifi&eacute; l&rsquo;unit&eacute; dans le formulaire de saisie, mais vous travaillez peut-&ecirc;tre avec les donn&eacute;es d&rsquo;un tiers ou des donn&eacute;es provenant de diff&eacute;rentes sources (par exemple, donn&eacute;es provenant de mesures faites par des machines dans des unit&eacute;s diff&eacute;rentes). Imaginez que, vous travaillez sur des fichiers m&eacute;dicaux de diff&eacute;rents pays et les poids des patients sont exprim&eacute;s en livres dans certains cas et en kilogrammes dans d&rsquo;autres. Il est important de convertir toutes les valeurs soit en livres soit en kilogrammes de mani&egrave;re &agrave; ce qu&rsquo;elles existent dans une m&ecirc;me &eacute;chelle de valeurs.  Sans cette conversion, les enregistrements ne pourront &ecirc;tre compar&eacute;s directement et toute visualisation bas&eacute;e sur les donn&eacute;es originales aura une dr&ocirc;le d&rsquo;allure !</p>
+
+<figure><img alt="Kilos (kg) and pounds in the same chart" src="../images/sections/04/GettingReady-kilo-pounds-bar-fr.png" /></figure>
+
+<p>Passez rapidement en revue les valeurs de votre jeu de donn&eacute;es afin d&rsquo;identifier tout champ pouvant pr&eacute;senter plusieurs unit&eacute;s et d&eacute;terminer si des conversions sont n&eacute;cessaires. Si elles le sont, vous pourriez avoir besoin de r&eacute;f&eacute;rencer un champ suppl&eacute;mentaire identifiant les unit&eacute;s d&rsquo;origine contre lesquelles les conversions ont &eacute;t&eacute; faites et quels enregistrements ont &eacute;t&eacute; chang&eacute;s. Si aucun champ ne vous indique les unit&eacute;s utilis&eacute;es, d&rsquo;autres champs, comme la localisation g&eacute;ographique, peuvent aider. Si vous ne trouvez pas de champ pouvant vous aider &agrave; identifier les unit&eacute;s mais que vous soup&ccedil;onner la n&eacute;cessit&eacute; d&rsquo;une conversion, contactez le fournisseur originel des donn&eacute;es afin d&rsquo;obtenir cette information. Vous d&eacute;couvrirez peut-&ecirc;tre qu&rsquo;aucune conversion n&rsquo;est n&eacute;cessaire et que vos donn&eacute;es sont juste &eacute;tranges.  Il vaut toutefois mieux v&eacute;rifier et s&rsquo;en assurer plut&ocirc;t que de passer &agrave; c&ocirc;t&eacute; d&rsquo;une erreur.</p>
+
+<p>Un autre type de conversion qui semble parfois moins &eacute;vident concerne le type de donn&eacute;es. Il est important de s&rsquo;assurer que toutes les valeurs d&rsquo;un m&ecirc;me champ sont du m&ecirc;me type sinon votre visualisation risque de ne pas s&rsquo;afficher correctement, selon la mani&egrave;re dont votre logiciel interpr&egrave;te cette information.  Par exemple, &laquo;80&raquo; est probablement un nombre pour vous, mais votre ordinateur le sauvegarde r&eacute;ellement sous forme d&rsquo;une cha&icirc;ne de caract&egrave;res plut&ocirc;t que sous forme num&eacute;rique. Certains logiciels de visualisation traiteront tout de m&ecirc;me une entr&eacute;e de texte contenant un nombre comme un nombre, mais d&rsquo;autres ne le feront pas. Une bonne pratique est donc de sauvegarder chacun de vos champs (ou variables) sous un seul type de donn&eacute;e, tel que texte ou num&eacute;rique. Ainsi, toute information contenue dans ce champ sera trait&eacute;e comme elle se doit.</p>
+
+<h3>CONTR&Ocirc;LER LES INCONSISTANGIS</h3>
+
+<p>L&rsquo;une des t&acirc;ches les plus fastidieuses quand on nettoie des donn&eacute;es est la gestion d&rsquo;informations fluctuantes. Par exemple, il est fr&eacute;quent de rencontrer des mots provenant de plusieurs langues diff&eacute;rentes dans un m&ecirc;me jeu de donn&eacute;es.  Avec  l&rsquo;internet, il est maintenant facile de recueillir des informations venant d&rsquo;utilisateurs du monde entier.  Cela peut causer des probl&egrave;mes quand vous essayez de grouper les informations dans le but de les visualiser. Imaginez que vous faites un sondage aupr&egrave;s d&rsquo;&rsquo;&eacute;tudiants et que l&rsquo;un de vos champs textuels leur demande leur mati&egrave;re d&rsquo;&eacute;tude principale. Un &eacute;tudiant r&eacute;pondra &laquo; Maths &raquo; alors qu&rsquo;un autre y &eacute;crira &laquo; Math&eacute;matiques &raquo; et un troisi&egrave;me &laquo; Math&eacute;matiques Appliqu&eacute;es &raquo;. Ces r&eacute;ponses correspondent &agrave; la m&ecirc;me mati&egrave;re principale sur un campus, mais un ordinateur ou un logiciel de visualisation ne mettra pas ces r&eacute;ponses dans le m&ecirc;me groupe. Vous devrez cr&eacute;er un seul terme (par exemple, changer toutes ces r&eacute;ponses pour qu&rsquo;elles soient &laquo; Maths &raquo; ou &laquo; Math&eacute;matiques &raquo;) ou cr&eacute;er un champ s&eacute;par&eacute; contenant un code si vous souhaitez les voir traiter comme appartenant toutes &agrave; la m&ecirc;me cat&eacute;gorie.</p><p></p>
+
+<figure><img alt="Controlled vocabulary example" src="../images/sections/04/GettingReady-controlled-vocabulary-bar-fr.png" /></figure>
+
+<p>Bien qu&rsquo;un ordinateur puisse vous aider &agrave; changer les valeurs, les probl&egrave;mes li&eacute;s &agrave; l&rsquo;inconsistance des donn&eacute;es doivent souvent &ecirc;tre trait&eacute;es semi-manuellement.  Si vous utilisez des champs textuels, comme cela arrive souvent lorsqu&rsquo;on programme, les outils de recherche et de remplacement seront vos meilleurs amis.  Tant que vous savez quelles sont les variantes principales des donn&eacute;es que vous d&eacute;sirez contr&ocirc;ler, vous pourrez rapidement toutes les remplacer par une m&ecirc;me et simple valeur.</p>
+
+<figure><img alt="Find and replace" src="../images/sections/04/GettingReady-find-replace-form-fr.png" /></figure>
+
+<h3>VALEURS MANQUANTES</h3>
+
+<p>Un des probl&egrave;mes les plus frustrants apparait quand des champs de donn&eacute;es sont vides ou incomplets. Si une donn&eacute;e n&rsquo;a pas &eacute;t&eacute; collect&eacute;e, il n&rsquo;est pas certain que vous puissiez retourner &agrave; la source pour la retrouver. Il est aussi possible que la source ne soit pas connue, comme dans le cas de sondages anonymes. Si vous ne pouvez pas r&eacute;cup&eacute;rer cette information, il est important de g&eacute;rer <a class="glossterm" target="_blank" href="glossary01.html#data-missing">les cas de donn&eacute;es manquantes</a> correctement.  Vous devrez pr&eacute;d&eacute;finir une liste de valeurs &agrave; entrer quand des donn&eacute;es sont manquantes de fa&ccedil;on &agrave; ce qu&rsquo;un tiers v&eacute;rifiant votre jeu de donn&eacute;es sache que les informations sont absentes et que ce n&rsquo;est pas un oubli de votre part.</p>
+
+<p>Ces valeurs devront &ecirc;tre hors du domaine normal de vos donn&eacute;es afin qu&rsquo;il soit clair qu&rsquo;elles remplacent des informations manquantes. Pour des ensembles de donn&eacute;es sans nombres n&eacute;gatifs, la valeur &laquo; -9 &raquo; est souvent utilis&eacute;e comme valeur par d&eacute;faut, du moins dans les champs num&eacute;riques. &laquo; 999 &raquo; est un autre choix populaire pour les ensembles n&rsquo;utilisant que des petits nombres et un point (.) est utilis&eacute; par certains logiciels statistiques traitant des jeux de donn&eacute;es avec des nombres n&eacute;gatifs ou repr&eacute;sentant de grandes valeurs. Pour les champs textuels, le signe moins (-) est commun&eacute;ment utilis&eacute; pour indiquer une valeur manquante.</p>
+
+<p>Gardez en m&eacute;moire qu&rsquo;une valeur manquante n&rsquo;est pas la m&ecirc;me chose qu&rsquo;un d&eacute;ni de r&eacute;ponse intentionnel. Dans les deux cas, vous n&rsquo;avez pas de r&eacute;ponse &agrave; la question pos&eacute;e, mais lorsqu&rsquo;une personne choisit activement de ne pas r&eacute;pondre, cela est en soi une information. Ces r&eacute;ponses ne sont pas manquantes : vous savez parfaitement o&ugrave; elles se trouvent, les sond&eacute;s ne veulent tout simplement pas vous fournir l&rsquo;information. Comme discut&eacute; dans <a href="ch03.html">le chapitre sur la conception de formulaire</a>, il vaut mieux introduire une option &laquo; Pr&eacute;f&egrave;re s&rsquo;abstenir &raquo; pour les questions personnelles, telles que celles concernant les revenus, l&rsquo;affiliation politique, etc. Ainsi, vous pouvez utiliser un code pour ce type de r&eacute;ponse et lors des r&eacute;visions ult&eacute;rieures de votre jeu de donn&eacute;es, vous saurez diff&eacute;rencier les abstentions  des cas o&ugrave; l&rsquo;information est r&eacute;ellement manquante.</p>
+
+<p>Il faut se rappeler que pour les repr&eacute;sentations visuelles  descriptives simples, les donn&eacute;es manquantes sont d&eacute;crites en incluant une cat&eacute;gorie sans-r&eacute;ponse ou en signifiant un changement dans la taille de l&rsquo;&eacute;chantillon. Cependant, en statistiques inf&eacute;rentielles, les donn&eacute;es manquantes peuvent &ecirc;tre trait&eacute;es de bien des mani&egrave;res, de l&rsquo;exclusion &agrave; l&rsquo;imputation en passant par les m&eacute;thodes de classification automatique tel que l&rsquo;algorithme esp&eacute;rance-maximisation.</p>
+
+<figure><img alt="Pie chart comparisons" src="../images/sections/04/GettingReady-missing-values-comparison-pie-fr.png" /></figure>
+
+<h3>R&Eacute;DUIRE LA CHARGE DE LA PR&Eacute;PARATION DES DONN&Eacute;ES</h3>
+
+<p>Les meilleurs rem&egrave;des sont pr&eacute;ventifs.  Si vous &ecirc;tes la personne qui cr&eacute;e le formulaire d&rsquo;entr&eacute;es-utilisateur, faites ce que vous pouvez pour &eacute;viter de recevoir des donn&eacute;es qui n&eacute;cessiteront un travail intensif durant les phases de pr&eacute;paration des donn&eacute;es. Dans <a href="ch09.html">le chapitre sur les types de validation des donn&eacute;es</a>, nous discuterons des diff&eacute;rentes strat&eacute;gies pour minimiser le nombre de t&acirc;ches de pr&eacute;paration des donn&eacute;es &agrave; r&eacute;aliser.</p>
+
+<p>Si vous n&rsquo;&ecirc;tes pas la personne qui collecte les donn&eacute;es mais que vous pouvez discuter avec ceux qui le font, essayez de travailler avec eux afin d&rsquo;identifier et de r&eacute;soudre tous les probl&egrave;mes de collection en utilisant les diff&eacute;rentes strat&eacute;gies pr&eacute;sent&eacute;es dans le chapitre<a href="DataChecks-French.html"> </a>sur les types de validation des donn&eacute;es comme guide.</p>
+
+<h3>APR&Egrave;S LE NETTOYAGE DES DONN&Eacute;ES</h3>
+
+<p>Une fois vos donn&eacute;es s&eacute;par&eacute;es dans les champs voulus, converties dans les bonnes unit&eacute;s et dans les bons types et que la terminologie est sous contr&ocirc;le, vous &ecirc;tes enfin pr&ecirc;t &agrave; passer &agrave; la phase de nettoyage des donn&eacute;es o&ugrave; vous v&eacute;rifierez la validit&eacute; factuelles de celles-ci.  Dans les trois chapitres suivants, nous parlerons du processus de base de nettoyage des donn&eacute;es, des diff&eacute;rents processus permettant de valider les informations et d&rsquo;y d&eacute;celer des probl&egrave;mes, et de ce que vous pouvez et ne pouvez pas faire lors du nettoyage des donn&eacute;es.</p>
+
+</section>
+</section>
