@@ -1,0 +1,38 @@
+<section class="blue" data-type="chapter">
+<header>
+  <div class="icon"><img src="../images/sections/04/close-inspection.png" /></div>
+  <p>Chapitre 10</p>
+  <h1>Ce qui peut et ne peut &ecirc;tre nettoy&eacute; dans les donn&eacute;es</h1>
+  <p data-type="author">Par Dyanna Gregory Adapt&eacute; par Laurent Nepveu</p>
+</header>
+
+<section data-type="sect1">
+<p>Maintenant que nous avons d&eacute;termin&eacute; pourquoi on utilise le nettoyage de donn&eacute;es, ainsi que les m&eacute;thodes et approches &agrave; notre disposition pour donner forme &agrave; notre jeu de donn&eacute;es, demeure la question de ce que l&#39;on peut et ne peut pas faire avec le nettoyage de donn&eacute;es.</p>
+
+<p>La r&egrave;gle g&eacute;n&eacute;rale pour nettoyer un jeu de donn&eacute;es dont chaque colonne est une variable et chaque rang&eacute;e est un enregistrement est:</p>
+
+<ul>
+	<li>Pour un enregistrement, si plus de la moiti&eacute; des variables contiennent une valeur manquante ou erron&eacute;e, il est recommand&eacute; d&#39;exclure cet enregistrement.</li>
+	<li>Pour une variable, si plus de la moiti&eacute; des enregistrements contiennent une valeur manquante ou erron&eacute;e, il est recommand&eacute; d&#39;exclure cette variable.</li>
+</ul>
+
+<p>&Agrave; noter que l&#39;exclusion de variables ou d&#39;enregistrements ne veut pas dire que l&#39;on supprime ceux-ci de nos donn&eacute;es. Les variables et enregistrements exclus d&#39;une analyse devraient &ecirc;tre plac&eacute;es dans un jeu de donn&eacute;es &agrave; part. Si les donn&eacute;es sont supprim&eacute;es, on ne peut les r&eacute;cup&eacute;rer, m&ecirc;me si une mani&egrave;re de corriger une donn&eacute;e manquante ou erronn&eacute;e devait &ecirc;tre trouv&eacute;e ult&eacute;rieurement. Ne supprimez donc des donn&eacute;es que si vous &ecirc;tes absolument certains qu&#39;elles ne pourront &ecirc;tre utilis&eacute;es.</p>
+
+<p>Dans les pr&eacute;c&eacute;dents chapitres, nous avons discut&eacute; de plusieurs techniques de nettoyage de donn&eacute;es, ainsi que des diff&eacute;rents types de probl&egrave;mes que ces techniques permettent d&#39;identifier et de solutionner. Ces types de probl&egrave;mes sont:</p>
+
+<ul>
+	<li>mauvaises &eacute;tiquettes, erreurs d&#39;orthographe ou de ponctuation</li>
+	<li><a class="glossterm" target="_blank" href="glossary01.html#data-invalid">valeurs erron&eacute;es</a>, ab&eacute;rrantes ou extr&ecirc;mes</li>
+	<li>donn&eacute;es incoh&eacute;rentes</li>
+	<li>trop faible ou trop grande quantit&eacute; de donn&eacute;es</li>
+	<li>distributions anormales</li>
+	<li>valeurs manquantes</li>
+</ul>
+
+<p>Ce que nous n&#39;avons pas encore abord&eacute; est le fait que certaines erreurs ne peuvent tout simplement pas &ecirc;tre corrig&eacute;es par les processus de nettoyage de donn&eacute;es. Il est possible que vos donn&eacute;es contiennent des valeurs incorrectes tout en &eacute;tant coh&eacute;rentes avec le jeu de donn&eacute;es et les plages de valeurs admissibles. Par exemple, si quelqu&#39;un a entr&eacute; la valeur 45 plut&ocirc;t que 54 dans une variable pouvant contenir des valeurs de 0 &agrave; 100, il ne sera pas possible de d&eacute;tecter cette erreur, &agrave; moins que cette variable ne puisse &ecirc;tre valid&eacute;e d&rsquo;une autre mani&egrave;re (utilisation d&rsquo;une autre source, lien avec une autre variable, etc).</p>
+
+<p>De la m&ecirc;me fa&ccedil;on, il est possible que vous ayez &agrave; traiter de donn&eacute;es de questionnaires en-ligne et qu&#39;un r&eacute;pondant ait choisi la r&eacute;ponse &quot;Fortement en accord&quot;, alors qu&#39;il voulait plut&ocirc;t indiquer &quot;Fortement en d&eacute;saccord&quot;. L&agrave; &eacute;galement, si cette r&eacute;ponse ne peut &ecirc;tre contre-valid&eacute;e avec une autre variable ou une autre source, il n&#39;y a aucune fa&ccedil;on de d&eacute;tecter cette erreur. Et ce type d&#39;erreur peut parfois &ecirc;tre critique. Si un r&eacute;pondant choisit &quot;Fortement en accord&quot;, plut&ocirc;t que &quot;En accord&quot; dans un sondage d&#39;opinion, l&#39;impact sur l&#39;analyse sera minime. Par contre, si un r&eacute;pondant indique le mauvais genre dans un questionnaire de recherche m&eacute;dicale utilisant justement cette variable pour diff&eacute;rencier les traitements &agrave; appliquer, les cons&eacute;quences peuvent &ecirc;tre plus importantes.</p>
+
+<p>Le nettoyage de donn&eacute;es ne permet pas non plus de d&eacute;terminer si une valeur manquante est v&eacute;ritablement manquante (on a oubli&eacute; de r&eacute;pondre ou la r&eacute;ponse n&#39;a pas &eacute;t&eacute; recueillie) ou si le r&eacute;pondant s&#39;est volontairement abstenu de r&eacute;pondre (en supposant que l&#39;option &quot;Ne souhaite pas r&eacute;pondre&quot; n&#39;ait pas &eacute;t&eacute; pr&eacute;sent&eacute;e). Bien que dans certaines analyses, les deux cas de figure puissent &ecirc;tre trait&eacute;s de mani&egrave;re identique (valeur manquante), la diff&eacute;rence entre r&eacute;ponse manquante et r&eacute;ponse non renseign&eacute;e peut parfois &ecirc;tre importante (par exemple dans le cas de recherches d&eacute;mographiques). C&#39;est pourquoi il est sugg&eacute;r&eacute; d&#39;inclure une option &quot;Ne souhaite pas r&eacute;pondre&quot; lorsque vous d&eacute;sirez sp&eacute;cifiquement savoir si le r&eacute;pondant s&#39;abstient de r&eacute;pondre &agrave; une question, en particulier si les questions sont d&#39;ordre racial, ethnique, financier, politique, etc.</p>
+</section>
+</section>
