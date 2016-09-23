@@ -1,0 +1,213 @@
+<section class="red" data-type="chapter">
+<header>
+ <div class="icon"><img src="../images/sections/04/DataChecks-icon-inspect-fr.png" /></div>
+ <p>Chapitre 9</p>
+ <h1>V&eacute;rification des donn&eacute;es</h1>
+ <p data-type="author">Par Ian Tebbutt Adapt&eacute; par Ooussef Ennahdi</p>
+</header>
+
+<section data-type="sect1">
+<p>Au chapitre pr&eacute;c&eacute;dent, Num&eacute;rous avons &eacute;tudi&eacute; le nettoyage des donn&eacute;es et les processus de validation qui permettent de le r&eacute;aliser. Dans ce chapitre, Num&eacute;rous parlerons plus en d&eacute;tails de la v&eacute;rification des informations et des autres processus de validation, pouvant intervenir avant ou apr&egrave;s le nettoyage proprement dit.</p>
+
+<p>La validation des informations est cruciale si vous et votre audience devez avoir confiance dans la connaissance qu&rsquo;elle vous apporte. L&rsquo;approche de base est directe car vous avez des champs de donn&eacute;es et chacun d&rsquo;eux contient des donn&eacute;es d&rsquo;un domaine attendu. Par exemple, un &acirc;ge doit &ecirc;tre compris entre 0 et 120 ans (et dans bien des cas, sera sous les 80 ans). Les dates des transactions se situent bien souvent dans un pass&eacute; r&eacute;cent, souvent dans l&rsquo;ann&eacute;e ou les deux ann&eacute;es pr&eacute;c&eacute;dentes, particuli&egrave;rement si votre source provient du web (un flux Twitter par exemple).</p>
+
+<p>Cependant, la validation de donn&eacute;es, bien que facile &agrave; appr&eacute;hender et importante &agrave; r&eacute;aliser, repr&eacute;sente un probl&egrave;me complexe &agrave; r&eacute;soudre parce qu&rsquo;il y a beaucoup de sources d&rsquo;erreur possibles.  Pensons &agrave; des donn&eacute;es fausses ou &agrave; un format d&rsquo;entrer diff&eacute;rent du format attendu.</p>
+
+<h2>Quand valider ?</h2>
+
+<p>Consid&eacute;rez un jeu de donn&eacute;es d&rsquo;une soci&eacute;t&eacute; de t&eacute;l&eacute;communication contenant des informations sur les clients qui changent de num&eacute;ros de t&eacute;l&eacute;phone. La base de donn&eacute;es vous est fournie mais les donn&eacute;es, agr&eacute;g&eacute;es depuis des centaines de petits fournisseurs, n&rsquo;ont pas &eacute;t&eacute; v&eacute;rifi&eacute;es.  La base de donn&eacute;es, toujours utilis&eacute;e quotidiennement, est un parfait exemple du besoin de validation. Imaginez que vous corr&eacute;liez le co&ucirc;t d&rsquo;une ligne t&eacute;l&eacute;phonique &agrave; l&rsquo;&acirc;ge. L&rsquo;exemple ci-dessous montre quelques-uns des probl&egrave;mes.</p>
+
+<ul>
+ <li>Le champ TypeDeLigne m&eacute;lange des r&eacute;f&eacute;rences cod&eacute;es et du texte</li>
+ <li>La valeur 0 dans le champ &laquo; &Acirc;ge &raquo; ne signifie rien et ne sert &agrave; rien pour le calcul d&rsquo;une moyenne.  Et que dire de l&rsquo;&acirc;ge 112 ans ? Est-ce une erreur?</li>
+</ul>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Id</th>
+			<th>TypeDeLigne</th>
+			<th>&Acirc;ge</th>
+			<th>NouveauClient</th>
+			<th>Co&ucirc;t</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>MOBILE</td>
+			<td>0</td>
+			<td>NON</td>
+			<td>$12.45</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>Mobile</td>
+			<td>47</td>
+			<td>O</td>
+			<td>12 45</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>Ligne Fixe</td>
+			<td>34</td>
+			<td>Oui</td>
+			<td>37</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>LigneFixe</td>
+			<td>23</td>
+			<td>Oui</td>
+			<td>1.00</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>LF</td>
+			<td>112</td>
+			<td>O</td>
+			<td>$1000</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>La r&egrave;gle de base est: validez t&ocirc;t, validez souvent.  En validant t&ocirc;t, d&egrave;s que la valeur entre dans le syst&egrave;me, vous avez une chance de pouvoir la corriger imm&eacute;diatement. Par exemple, si le champ &laquo; NouveauClient &raquo; requiert les valeurs OUI ou NON, mais que l&rsquo;utilisateur saisit une r&eacute;ponse diff&eacute;rente, tel qu&rsquo;un tr&egrave;s inutile &laquo; A &raquo; ou un espace invisible, alors on peut demander &agrave; l&rsquo;utilisateur de corriger sa saisie.  Si cette validation n&rsquo;est faite que plus tard, des valeurs incorrectes seront entr&eacute;es dans la base de donn&eacute;es; vous saurez qu&rsquo;elles sont fausses mais vous ne pourrez pas corriger le probl&egrave;me sans devoir retrouver l&rsquo;utilisateur pour lui redemander cette information.  Il est parfois possible de comparer des champs incorrects avec des champs provenant de d&rsquo;autres jeux de donn&eacute;es analogues et d&rsquo;utiliser cette information pour r&eacute;parer les donn&eacute;es originelles. Cela peut &ecirc;tre complexe et am&egrave;ne possiblement d&rsquo;autres probl&egrave;mes puisque vous devrez notamment d&eacute;cider de la source de donn&eacute;es &agrave; utiliser.</p>
+
+<p>Si vous &ecirc;tes dans la position privil&eacute;gi&eacute;e de pouvoir contr&ocirc;ler la mani&egrave;re dont les informations sont recueillies, vous avez un avantage car la validation la plus facile est celle qui peut se faire d&egrave;s que les donn&eacute;es sont saisies.  On appelle cela la validation en entr&eacute;e, <a class="glossterm" target="_blank" href="glossary01.html#check-front-end">la validation frontale</a> ou la validation cot&eacute;-client car elle se produit au moment o&ugrave; l&rsquo;utilisateur entre la donn&eacute;e et avant que celle-ci ne soit envoy&eacute;e vers la base de donn&eacute;es. C&rsquo;est commun&eacute;ment fait en s&rsquo;assurant que l&rsquo;application de r&eacute;cup&eacute;ration des donn&eacute;es ou la page web avec formulaire soient con&ccedil;ues de mani&egrave;re &agrave; n&rsquo;accepter que des valeurs valides. Vous avez certainement d&eacute;j&agrave; rencontr&eacute; ce type de validation si vous avez d&eacute;j&agrave; eu &agrave; remplir des formulaires sur le web.</p>
+
+<figure><img alt="Form validation on the web" src="../images/sections/04/DataChecks-front-end-check-phone-number-fr.png" /></figure>
+
+<p>Par exemple, il arrive souvent que les r&eacute;gions et pays soient &agrave; s&eacute;lectionner depuis une liste.  Dans ce cas, le choix du pays peut limiter automatiquement le choix de la r&eacute;gion ou autre.  On s&rsquo;assure ainsi d&rsquo;avoir des r&eacute;gions qui appartiennent au bon pays.</p>
+
+<figure><img alt="Pays and state drop down lists" src="../images/sections/04/DataChecks-front-end-check-drop-down-lists-fr.png" /></figure>
+
+<p>De cette fa&ccedil;on, votre syst&egrave;me n&rsquo;accepte que des bonnes donn&eacute;es au moment m&ecirc;me o&ugrave; elles sont tap&eacute;es.  L&rsquo;approche n&rsquo;est cependant pas parfaite. Il arrive souvent que la validation du formulaire soit faite &agrave; la toute fin, lorsque toutes les questions ont &eacute;t&eacute; vues et que l&rsquo;information est envoy&eacute;e vers le serveur.   Cela peut &ecirc;tre frustrant pour l&rsquo;utilisateur de recevoir un message d&rsquo;erreur lorsqu&rsquo;il a termin&eacute; de remplir le formulaire.  Une meilleure mani&egrave;re de s&rsquo;y prendre est de v&eacute;rifier chaque champ d&egrave;s qu&rsquo;il est rempli.  Cela n&eacute;cessite par contre un code plus difficile &agrave; programmer et un &eacute;change continu de demandes de validations envoy&eacute;es au serveur et de messages d&rsquo;erreurs potentielles renvoy&eacute;s &agrave; l&rsquo;utilisateur. Comme compromis, on pourra laisser les validations plus simples se faire cot&eacute;-client et les travaux de v&eacute;rification plus compliqu&eacute;s &agrave; des traitements cot&eacute;-serveurs. Cela sera surtout n&eacute;cessaire si certaines informations ou processus d&rsquo;homologation des donn&eacute;es n&rsquo;existent que sur le serveur. On peut voir de telles situations quand des donn&eacute;es hautement s&eacute;curis&eacute;es, telles que les informations de cartes de cr&eacute;dit, sont v&eacute;rifi&eacute;es.</p>
+
+<p>D&rsquo;autres mani&egrave;res acceptables de concevoir des formulaires de saisie et de minimiser le temps de pr&eacute;paration des donn&eacute;es sont :</p>
+
+<ul>
+	<li>
+	D&eacute;cider &agrave; l&rsquo;avance de la mani&egrave;re dont les Num&eacute;roms doivent &ecirc;tre entr&eacute;s. Est-ce acceptable que les utilisateurs y ajoutent des suffixes ou pr&eacute;fixes tels que Junior, Dr, Mme, ou pr&eacute;f&eacute;riez-vous stocker ces informations dans un champ s&eacute;par&eacute; ? Si oui, voulez-vous les d&eacute;signations professionnelles s&eacute;par&eacute;es des suffixes? Pr&eacute;Num&eacute;roms et Num&eacute;roms de familles doivent-ils aussi &ecirc;tre s&eacute;par&eacute;s?
+	</li>
+	<li>
+	Concevoir des formulaires afin que les num&eacute;ros de t&eacute;l&eacute;phone et les dates ne puissent &ecirc;tre entr&eacute;s que de la fa&ccedil;on dont vous voulez les sauvegarder (Num&eacute;rous reparlerons des dates plus tard). D&eacute;cidez si oui ou Num&eacute;ron vous souhaitez stocker &agrave; part les extensions des num&eacute;ros de t&eacute;l&eacute;phone de travail. Si oui, cr&eacute;er un champ diff&eacute;rent pour cette donn&eacute;e-l&agrave;.
+	</li>
+</ul>
+
+<h2>Tout le monde ment</h2>
+
+<p>M&ecirc;me si votre formulaire est tr&egrave;s bien con&ccedil;u et que vous avez mis en place toutes les validations n&eacute;cessaires lors des saisies de donn&eacute;es, une r&egrave;gle d&rsquo;or &agrave; retenir est de ne jamais faire confiance aux donn&eacute;es des utilisateurs.  Si les donn&eacute;es proviennent d&rsquo;un humain, alors quelque part se trouve une erreur.  M&ecirc;me avec des validations cot&eacute;-client, il devrait toujours y avoir des <a class="glossterm" target="_blank" href="glossary01.html#check-back-end">validations cot&eacute;-serveur</a>.  Celles-ci prennent place une fois la donn&eacute;e envoy&eacute;e par l&lsquo;utilisateur (lorsqu&rsquo;il clique sur le bouton &ldquo;Soumettre&rdquo;).  Il y a beaucoup de bonnes raisons pour cela. Vous n&rsquo;avez peut-&ecirc;tre pas con&ccedil;u les applications de collecte des donn&eacute;es ou vous r&eacute;cup&eacute;rez peut-&ecirc;tre des donn&eacute;es venant d&rsquo;applications sources diff&eacute;rentes. Certaines r&eacute;alisent de tr&egrave;s bonnes validations cot&eacute;-client alors que d&rsquo;autres non. Des donn&eacute;es non-nettoy&eacute;es ou non-valid&eacute;es peuvent entrer dans votre syst&egrave;me via son int&eacute;gration &agrave; d&rsquo;autres services et logiciels. L&rsquo;exemple d&rsquo;une base de donn&eacute;es de t&eacute;l&eacute;communication montre que plusieurs propri&eacute;taires avec peu de connaissances partag&eacute;es entre eux r&eacute;sultent en un jeu de donn&eacute;es pour le moins d&eacute;sordonn&eacute;. Un petit effort en d&eacute;but de cha&icirc;ne aurait fourni un jeu de donn&eacute;es plus propre, &eacute;conomisant ainsi du temps et de la frustration.</p>
+
+<p>Une seconde r&egrave;gle d&rsquo;or est de n&rsquo;utiliser les champs textuels qu&rsquo;en cas de n&eacute;cessit&eacute;. Par exemple, pour certains pays il est commun d&rsquo;enregistrer les adresses en plusieurs champs tels que Adresse1, Adresse2, Ville, Code Postal, Pays, mais au Royaume-Uni il est tr&egrave;s courant de seulement demander le code postal et le num&eacute;ro de rue car ces deux informations sont suffisantes pour retrouver l&rsquo;adresse exacte. De cette fa&ccedil;on, le code postal est valid&eacute; automatiquement et les adresses sont des donn&eacute;es propres car elles n&rsquo;ont pas &eacute;t&eacute; saisies par un utilisateur. Pour d&rsquo;autres pays, Num&eacute;rous devons utiliser des champs textuels et, dans ce cas, plusieurs v&eacute;rifications devront &ecirc;tre faites.</p>
+
+<p>L&rsquo;utilisation de virgules peut aussi vous causer des soucis car beaucoup de fichiers de donn&eacute;es sont au format CSV (Comma-Separated Values : valeurs s&eacute;par&eacute;es par des virgules [NdT]). Une virgule suppl&eacute;mentaire cr&eacute;e un Num&eacute;rouveau champ inattendu et tous les champs restants sont d&eacute;cal&eacute;s vers la droite. Rien que pour cette raison, &eacute;vitez de couper/coller les donn&eacute;es directement depuis une application; il vaut mieux les sauvegarder dans un fichier que vous utiliserez lors de la phase suivante.</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Titre</th>
+			<th>Nom</th>
+			<th>Nom de famille</th>
+			<th>Adresse1</th>
+			<th>Adresse2</th>
+			<th>Ville</th>
+			<th>&Eacute;tat</th>
+			<th>Pays</th>
+			<th> </th>
+		</tr>
+		<tr>
+			<td>Bill</td>
+			<td>Boulanger</td>
+			<td> </td>
+			<td>13</td>
+			<td>Une rue</td>
+			<td>Lens</td>
+			<td>Nord</td>
+			<td>FR</td>
+			<td> </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td>Mr</td>
+			<td>Guy</td>
+			<td>Tehi</td>
+			<td>27 L&rsquo;impasse</td>
+			<td> </td>
+			<td>Bonn</td>
+			<td>Nord</td>
+			<td>FR</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Dans l&rsquo;exemple ci-haut, une virgule ajout&eacute;e au d&eacute;but du second enregistrement a pouss&eacute; les donn&eacute;es vers la droite. Facile &agrave; voir pour un humain, mais difficile &agrave; comprendre pour la plupart des syst&egrave;mes informatiques.  Une bonne validation consiste &agrave; v&eacute;rifier qu&rsquo;il n&rsquo;y a pas de donn&eacute;es au-del&agrave; du dernier champ (&laquo; Pays &raquo;). Nous mettons ici l&rsquo;emphase sur l&rsquo;importance de combiner des v&eacute;rifications &agrave; la fois automatis&eacute;es et manuelles lors de la validation. Parfois, un simple coup d&rsquo;&oelig;il &agrave; vos donn&eacute;es peut faire toute la diff&eacute;rence!</p>
+
+<h2>Formats et validations</h2>
+
+<p>Quand vous travaillez avec des Num&eacute;rombres, vous devez aussi rester vigilants.  Les valeurs ont-elles du sens? Si vous travaillez avec des valeurs mon&eacute;taires, un prix peut-il vraiment &ecirc;tre $1,000,000 ou est-ce que quelqu&rsquo;un a entr&eacute; une mauvaise valeur? De la m&ecirc;me fa&ccedil;on, si un prix est n&eacute;gatif, cela signifie-t-il que le produit est gratuit ou plut&ocirc;t que quelqu&rsquo;un a &eacute;t&eacute; pay&eacute; pour Num&eacute;rous en d&eacute;barrasser ? Apr&egrave;s tout, en comptabilit&eacute;, on demande &agrave; ce que certaines sources enregistrent des prix n&eacute;gatifs de mani&egrave;re &agrave; balancer les totaux.</p>
+
+<p>De m&ecirc;me, v&eacute;rifier l&rsquo;existence de lettres ou de caract&egrave;res espaces dans vos chiffres est utile, mais les devises et les valeurs n&eacute;gatives peuvent vous compliquer la t&acirc;che et vos donn&eacute;es peuvent ressembler &agrave; l&rsquo;exemple suivant. Toutes les lignes montrent des styles diff&eacute;rents et valides de repr&eacute;senter des valeurs avec devises et contiennent pourtant des caract&egrave;res Num&eacute;ron-num&eacute;riques.</p>
+
+<div data-type="example">
+<p>$-1123.45<br />
+(1123.45)<br />
+-CAN$1123.45<br />
+-112345E-02</p>
+</div>
+
+<p>Lettres et chiffres se m&eacute;langent correctement et les valeurs n&eacute;gatives peuvent &ecirc;tre format&eacute;es diff&eacute;remment.</p><p></p>
+
+<p>Les dates sont aussi une cause de probl&egrave;mes et doivent &ecirc;tre v&eacute;rifi&eacute;es. Le premier probl&egrave;me est d&ucirc; aux diff&eacute;rents formats nationaux. La date 01/12/2013 repr&eacute;sente le 12 janvier 2013 aux &Eacute;tats-Unis mais le 1er d&eacute;cembre 2013 en France. Si vous &ecirc;tes chanceux vous recevrez les dates au format  international 2013-01-12 (AAAA-MM-JJ). En bonus, les dates au format standard (<a href="http://www.iso.org/iso/fr/home/standards/iso8601.htm">http://www.iso.org/iso/fr/home/standards/iso8601.htm</a>) peuvent &ecirc;tre ordonn&eacute;es m&ecirc;me lorsqu&rsquo;elles sont entrepos&eacute;es en tant que texte. Cependant, si vous n&rsquo;avez pas cette chance, il sera important de s&rsquo;assurer que vous sachiez quelles p&eacute;riodes sont r&eacute;ellement repr&eacute;senter par les dates que vous recevez, surtout si vous recevez des dates d&rsquo;utilisateurs de diff&eacute;rents pays chacun utilisant donc un format national diff&eacute;rent des autres. Une bonne mani&egrave;re de g&eacute;rer cette difficult&eacute;, si vous concevez le formulaire de saisie de donn&eacute;es, est de transformer les champs d&rsquo;entr&eacute;e de dates en boutons calendrier, afin que les utilisateurs y s&eacute;lectionnent les dates plut&ocirc;t que de les taper manuellement au clavier. Une alternative consiste &agrave; montrer le masque de donn&eacute;e attendu &agrave; l&rsquo;utilisateur afin de le guider lorsqu&rsquo;il remplit le champ.</p>
+
+<figure><img alt="Examples of input fields" src="../images/sections/04/DataChecks-date-format-fr.png" /></figure>
+
+<p>Une t&acirc;che de validation que vous rencontrerez probablement est l&rsquo;analyse et la v&eacute;rification du travail d&rsquo;un tiers afin de vous assurer que les visualisations et les chiffres ont vraiment du sens.  Cela pourra se produire &agrave; votre travail si vous devez valider le travail de coll&egrave;gues ou en ligne si les visualisations publi&eacute;es fournissent les donn&eacute;es sources afin que vous puissiez faire vos propres analyses. Dans les deux cas, la premi&egrave;re v&eacute;rification consiste &agrave; recalculer les totaux.  Ensuite, gardez un &oelig;il critique sur les visualisations : les valeurs ont-elles du sens, sont-elles en ligne avec l&rsquo;histoire racont&eacute;e par la visualisation ou la contredisent-elles ? Les validations ne concernent pas seulement la recherche d&rsquo;erreurs.  La compr&eacute;hension des donn&eacute;es peut aussi en &ecirc;tre le but. Cela vous donnera une bonne exp&eacute;rience quand vous ferez vos propres validations.  C&rsquo;est d&rsquo;ailleurs la premi&egrave;re chose &agrave; essayer lorsque quelqu&rsquo;un vous fournit un rapport.  Il faut toujours s&rsquo;assurer de la validit&eacute; des donn&eacute;es.</p>
+
+<h2>La v&eacute;rit&eacute; change</h2>
+
+<p>Une autre raison de valider les informations est li&eacute;e &agrave; la version des donn&eacute;es sur laquelle vous travaillez.</p>
+
+<p>Les applications et les syst&egrave;mes changent avec le temps, des champs sont ajout&eacute;s, d&rsquo;autres sont supprim&eacute;s et, plus dommageable, leurs r&ocirc;les peuvent changer. Par exemple, les codes postaux australiens contiennent 4 chiffres et sont stock&eacute;s dans des champs de 4 caract&egrave;res. Certains syst&egrave;mes d&rsquo;informations ont &eacute;t&eacute; transform&eacute;s r&eacute;cemment de mani&egrave;re &agrave; utiliser un code plus pr&eacute;cis &agrave; 5 chiffres connu sous l&rsquo;acronyme SLA. Quand ces deux syst&egrave;mes de codage sont combin&eacute;s, on voit appara&icirc;tre des donn&eacute;es &agrave; 5 chiffres tronqu&eacute;es afin de les faire entrer dans le champ classique de codes postaux &agrave; 4 chiffres. La v&eacute;rification est difficile : codes postaux classiques et codes SLAs sont d&eacute;finis dans des listes accessibles au public, mais il faut une vraie enqu&ecirc;te pour comprendre pourquoi certains des codes &agrave; 4 chiffres ne se trouvent dans aucune de ces listes.</p><p></p>
+
+<p>Vous devriez ainsi consid&eacute;rer collecter des informations qui ne feront pas partie de votre visualisation ou du rapport final, mais qui vous donneront une connaissance accrue des enregistrements, comme les dates auxquelles ceux-ci ont &ecirc;tre cr&eacute;&eacute;s.   ImagiNum&eacute;rons un cas o&ugrave; de de Num&eacute;rouveaux champs sont ajout&eacute;s apr&egrave;s la cr&eacute;ation initiale du jeu de donn&eacute;e:  les enregistrements existants n&rsquo;auront pas de valeurs pour ces champs.  Supposons qu&rsquo;une erreur humaine survienne et que tous ces Num&eacute;rouveaux champs se retrouvent avec la valeur z&eacute;ro pour les enregistrements plus anciens. L&rsquo;effet sera d&eacute;vastateur sur les moyennes calcul&eacute;es et l&rsquo;impact sur les visualisations pourrait &ecirc;tre &eacute;Num&eacute;rorme. Si vous avez la date de cr&eacute;ation des enregistrements, vous aurez la possibilit&eacute; de parcourir le jeu de donn&eacute;es pour remplacer les z&eacute;ros ajout&eacute;s incorrectement par des valeurs nulles (NA) afin de r&eacute;parer les d&eacute;g&acirc;ts. Pour les champs supprim&eacute;s, un probl&egrave;me similaire peut survenir. Il est rare que des champs inusit&eacute;s soient simplement supprim&eacute;s du jeu de donn&eacute;es, mais ils peuvent parfois &ecirc;tre r&eacute;utilis&eacute;s &agrave; d&rsquo;autres fins, et dans ce cas, comprendre leur signification est un v&eacute;ritable d&eacute;fi si leurs fonctions ont &eacute;t&eacute; modifi&eacute;es au cours du temps.</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>Montant</th>
+			<th>Type de Paiement</th>
+			<th>ID Serveur </th>
+			<th>Date de cr&eacute;ation</th>
+		</tr>
+		<tr>
+			<td>$100</td>
+			<td>CC</td>
+			<td> </td>
+			<td> </td>
+		</tr>
+		<tr>
+			<td>$143</td>
+			<td>Esp&egrave;ces</td>
+			<td> </td>
+			<td> </td>
+		</tr>
+		<tr>
+			<td>$27</td>
+			<td>American Express</td>
+			<td>237</td>
+			<td>3/1/2013</td>
+		</tr>
+		<tr>
+			<td>$45</td>
+			<td>Esp&egrave;ces</td>
+			<td>467</td>
+			<td>3/1/2013</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Vous voyez ici les cons&eacute;quences d&rsquo;ajouter deux Num&eacute;rouveaux champs, IdentifiantServeur et DateDeCreation, &agrave; un jeu de donn&eacute;es existant. Il est probable que ce changement ait pris place le 01/03/2013 (1er Mars 2013) donc si vos analystes observent les donn&eacute;es depuis cette date, vous pourrez relier les ventes aux serveurs. Cependant il n&rsquo;y a pas de donn&eacute;es de ce type avant cette date et si vous voulez savoir ce qui se passait le 1er janvier 2013, il vous faudra chercher des donn&eacute;es compl&eacute;mentaires ailleurs.</p><p></p>
+
+<p>L&rsquo;une des v&eacute;rifications essentielles concerne le changement de signification des champs et valeurs au cours du temps. Dans un monde parfait, tout changement serait correctement document&eacute; et vous sauriez &agrave; tout instant la signification de tous les champs. La r&eacute;alit&eacute; est que de tels changements sont rarement document&eacute;s de mani&egrave;re compl&egrave;te. L&rsquo;autre mani&egrave;re de savoir ce que la valeur dans un champ repr&eacute;sente est de discuter avec les administrateurs et les utilisateurs du syst&egrave;me.</p><p></p>
+
+<p>Les points pr&eacute;sent&eacute;s ici ne sont quelques-unes des &eacute;tapes &agrave; suivre pour vous assurer que vous comprenez vos donn&eacute;es et que vous &ecirc;tes conscients que des erreurs potentielles peuvent s&rsquo;y trouver. Dans le chapitre suivant, Num&eacute;rous parlerons des autres erreurs pernicieuses qui se cachent peut-&ecirc;tre dans vos donn&eacute;es et de la fa&ccedil;on de les d&eacute;masquer.</p><p></p><p></p> 
+</section>
+</section>
