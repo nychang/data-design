@@ -1,0 +1,129 @@
+<section class="violet" data-type="chapter">
+<header>
+ <div class="icon"><img src="../images/sections/04/DataCleaning-icon-soap-fr.png" /></div>
+ <p>Chapitre 8</p>
+ <h1>Le nettoyage des donn&eacute;es</h1>
+ <p data-type="author">Par Marit Brademann and Dyanna Gregory Adapt&eacute; par Laurent Reber</p>
+</header>
+
+<section data-type="sect1">
+<p>Maintenant que votre jeu de donn&eacute;es a &eacute;t&eacute; pr&eacute;par&eacute;, vous &ecirc;tes pr&ecirc;t pour la prochaine &eacute;tape: le nettoyage. Mais qu&rsquo;est-ce que cela signifie ? Qu&rsquo;entend-on exactement par donn&eacute;es propres et que devez-vous faire pour les transformer ainsi? </p>
+
+<p>Et bien, lorsque l&rsquo;on nettoie des donn&eacute;es, nous les passons en revue pour identifier les informations erron&eacute;es - chiffres incorrects, fautes de frappe, etc - et nous d&eacute;cidons s&rsquo;il est n&eacute;cessaire des les corriger (si elles peuvent l&rsquo;&ecirc;tre) ou de les supprimer du jeu. De mani&egrave;re similaire &agrave; la pr&eacute;paration des donn&eacute;es, plusieurs t&acirc;ches de <a class="glossterm" target="_blank" href="glossary01.html#cleaning-data">nettoyage de donn&eacute;es</a> combinent &eacute;tapes automatis&eacute;es et manuelles. L&#39;intervention manuelle est n&eacute;cessaire afin de valider les erreurs potentielles identifi&eacute;es automatiquement et confirmer qu&rsquo;il s&rsquo;agit bien d&rsquo;erreurs. En effet, certains probl&egrave;mes report&eacute;s par un ordinateur peuvent &ecirc;tre des observations extr&ecirc;mes, il est donc important que vous soyez impliqu&eacute; dans le processus de validation. Automatiser toutes les t&acirc;ches signifierait prendre le risque d&rsquo;effacer des donn&eacute;es valides !</p>
+
+<h2>Que faire ?</h2>
+
+<p>Commen&ccedil;ons par les t&acirc;ches de nettoyage les plus simples. Nous allons utiliser Excel pour la plupart des exemples qui suivent, mais n&rsquo;importe quel outil de manipulation de donn&eacute;es ou de tables peut &ecirc;tre utilis&eacute; pour r&eacute;aliser ces proc&eacute;dures (une liste de programmes est disponible en <a href="app01.html">appendice</a>).</p>
+
+<h2>V&eacute;rification des plages de valeurs</h2>
+
+<p>La <a class="glossterm" target="_blank" href="glossary01.html#check-range">v&eacute;rification des plages de valeurs</a> est une mani&egrave;re directe de nettoyer des donn&eacute;es num&eacute;riques. Elle consiste &agrave; s&rsquo;assurer que toutes les valeurs du jeu se situent entre des bornes extr&ecirc;mes acceptables. Prenons un exemple bas&eacute; sur les notes d&rsquo;un devoir d&rsquo;&eacute;cole. Mettez-vous &agrave; la place d&rsquo;un professeur de coll&egrave;ge et imaginez que vos assistants ont entr&eacute; une premi&egrave;re liste de notes pour les devoirs r&eacute;alis&eacute;s durant le semestre. En tant que professeur, vous voulez &ecirc;tre s&ucirc;r que les valeurs ont &eacute;t&eacute; entr&eacute;es correctement. Vous allez donc v&eacute;rifier le jeu de donn&eacute;es en commen&ccedil;ant par trier les colonnes qui contiennent les r&eacute;sultats du premier devoir, not&eacute;s sur une &eacute;chelle de 0 &agrave; 100. Les premiers enregistrements sont les suivants:</p>
+
+<table>
+	<tbody>
+		<tr>
+			<th>&Eacute;tudiant (ID)</th>
+			<th>Note du devoir</th>
+		</tr>
+		<tr>
+			<td>679372531</td>
+			<td>980</td>
+		</tr>
+		<tr>
+			<td>673540288</td>
+			<td>99</td>
+		</tr>
+		<tr>
+			<td>674082892</td>
+			<td>97</td>
+		</tr>
+		<tr>
+			<td>673923590</td>
+			<td>96</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Le score de 980 n&rsquo;est pas dans la plage de valeurs acceptables et appara&icirc;t imm&eacute;diatement comme une erreur. L&rsquo;un des assistants a probablement ajout&eacute; accidentellement un z&eacute;ro apr&egrave;s le score qui aurait d&ucirc; &ecirc;tre de 98. Vous voudrez sans doute marquer cet enregistrement afin de confirmer la note r&eacute;elle avec l&rsquo;assistant.  </p>
+
+<p>Une v&eacute;rification visuelle des donn&eacute;es permet aussi de r&eacute;v&eacute;ler certains probl&egrave;mes, ce m&ecirc;me si les valeurs se trouvent &agrave; l&rsquo;int&eacute;rieur de la plage admise:</p>
+
+
+<table>
+	<tbody>
+		<tr>
+			<th>&Eacute;tudiant (ID)</th>
+			<th>Note du devoir</th>
+		</tr>
+		<tr>
+			<td>674472019</td>
+			<td>78</td>
+		</tr>
+		<tr>
+			<td>679029425</td>
+			<td>75</td>
+		</tr>
+		<tr>
+			<td>671822390</td>
+			<td>74</td>
+		</tr>
+		<tr>
+			<td>671278927</td>
+			<td>9</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Dans le cas ci-dessus, nous voyons tout de suite qu&rsquo;une note est bien plus faible que les autres. Est-ce une erreur?  Le score de 9 &eacute;tait-il en fait de 90?  Voici un autre enregistrement qu&rsquo;il est n&eacute;cessaire de marquer afin de confirmer sa valeur. Ces deux exemples simples illustrent l&rsquo;importance d&rsquo;&ecirc;tre personnellement impliqu&eacute; dans les processus de nettoyage de donn&eacute;es, notamment pour des variables importantes telles que les notes des &eacute;l&egrave;ves ou des variables cl&eacute;s de projets de recherche. Il est &agrave; noter qu&rsquo;une v&eacute;rification manuelle de toutes les valeurs d&rsquo;un jeu de donn&eacute;es peut prendre du temps. Toutes les variables ne sont pas non plus cr&eacute;&eacute;es de mani&egrave;re &eacute;gale : c&rsquo;est &agrave; vous de d&eacute;cider quelles variables vous devez v&eacute;rifier manuellement et lesquelles peuvent &ecirc;tre valid&eacute;es automatiquement.&Eacute;tudiant (ID)</p>
+
+<div data-type="warning"><p>La v&eacute;rification des plages de valeurs fonctionne quelle que soit la plage. Vous vous attendez peut-&ecirc;tre &agrave; trouver un nombre d&eacute;cimal compris entre 0 et 1, ou alors votre variable est la temp&eacute;rature du corps humain en degr&eacute;s Fahrenheit et vous vous attendez &agrave; trouver des valeurs entre 97.0 et 99.0 afin d&rsquo;inclure les personnes dont la temp&eacute;rature est un peu plus basse ou un peu plus haute que la moyenne.&Eacute;tudiant (ID)&Eacute;tudiant (ID)</p></div>
+
+<p>Vous pouvez aussi filtrer vos valeurs afin de v&eacute;rifier si certaines se trouvent en-dehors de la plage acceptable. On notera que ce test ne permet pas d&rsquo;identifier les valeurs qui bien que se trouvant dans la plage consid&eacute;r&eacute;e sont extr&ecirc;mes par rapport aux autres valeurs de votre jeu de donn&eacute;es. Dans le cas pr&eacute;c&eacute;dent, un <a class="glossterm" target="_blank" href="glossary01.html#filter ">filtre</a> permettrait de d&eacute;tecter le score de 980, mais pas celui de 9. Si vous utilisez la m&eacute;thode du filtre pour v&eacute;rifier vos plages de valeurs, une bonne pratique est d&rsquo;utiliser une autre m&eacute;thode afin de valider la distribution des vos donn&eacute;es et d&rsquo;identifier les valeurs qui semblent incoh&eacute;rentes par rapport aux autres.</p>
+
+<h2>V&eacute;rificateur d&rsquo;orthographe</h2>
+
+<p>Le v&eacute;rificateur d&rsquo;orthographe est un test simple que vous pouvez utiliser pour d&eacute;tecter des probl&egrave;mes dans un jeu de donn&eacute;es alphanum&eacute;riques. Dans ce cas, il est pr&eacute;f&eacute;rable de valider les champs les uns apr&egrave;s les autres plut&ocirc;t que de chercher &agrave; valider le jeu dans son ensemble. En effet, un mot consid&eacute;r&eacute; comme orthographi&eacute; incorrectement pour une variable peut &ecirc;tre valide pour une autre variable. C&rsquo;est par exemple le cas si le pr&eacute;nom d&rsquo;une personne doit &ecirc;tre entr&eacute;. Si vous avez un jeu de donn&eacute;es qui inclut un champ &ldquo;pr&eacute;nom&rdquo;, un certain nombre d&rsquo;entr&eacute;es g&eacute;n&eacute;reront une alerte du v&eacute;rificateur d&rsquo;orthographe, m&ecirc;me si ce sont des pr&eacute;noms l&eacute;gitimes. En vous focalisant sur un champ &agrave; la fois, vous pourrez plus rapidement revoir le jeu complet. Reprenons l&rsquo;exemple des &eacute;tudiants indiquant leur branche principale dans une &eacute;tude utilis&eacute;e au chapitre sur la pr&eacute;paration des donn&eacute;es et admettons que l&rsquo;un des &eacute;tudiants ait entr&eacute; &ldquo;Mth&eacute;matiques&rdquo; &agrave; la place de &ldquo;Math&eacute;matiques&rdquo;. Une v&eacute;rification de l&rsquo;orthographe dans la colonne &ldquo;Branche principale&rdquo; permettra d&rsquo;identifier et de corriger rapidement l&rsquo;erreur en rempla&ccedil;ant la valeur par &ldquo;Maths&rdquo; ou &ldquo;Math&eacute;matiques&rdquo;, en fonction du terme que vous aurez choisi. </p>
+
+<h2>Recherche de motifs et expressions r&eacute;guli&egrave;res</h2>
+
+<p>Une approche un peu plus avanc&eacute;e de v&eacute;rification de donn&eacute;es est la <a class="glossterm" target="_blank" href="glossary01.html#matching-pattern">recherche de motifs</a>. Ce type de processus peut, par exemple, &ecirc;tre utilis&eacute; pour v&eacute;rifier que toutes les valeurs entr&eacute;es dans un champ sont bien des adresses courriels. Cette m&eacute;thode implique l&rsquo;utilisation d&rsquo;expressions r&eacute;guli&egrave;res qui permettent de dire &agrave; un ordinateur &ldquo;Je ne veux stocker que les objets qui correspondent &agrave; {cela} dans cette variable. Dis-moi si certaines valeurs ne correspondent pas &agrave; {cela}.&rdquo; La syntaxe utilis&eacute;e pour d&eacute;terminer ce que {cela} signifie peut varier d&rsquo;un programme &agrave; un autre et peut avoir l&rsquo;air un peu compliqu&eacute; si vous n&rsquo;avez pas l&rsquo;habitude de travailler avec des expressions r&eacute;guli&egrave;res. Mais si vous avez d&eacute;j&agrave; utilis&eacute; un ast&eacute;risque (*) comme caract&egrave;re cl&eacute; dans une recherche, c&rsquo;est que vous avez d&eacute;j&agrave; utilis&eacute; une expression r&eacute;guli&egrave;re, vous en connaissez donc d&eacute;j&agrave; une partie !</p>
+
+<p>Il existe aussi des options de recherche de motifs dans Excel, ainsi que des options de filtrage avanc&eacute;es qui parfois fonctionnent m&ecirc;me mieux. R&eacute;f&eacute;rez-vous &agrave; la <a href="app01.html" target="_blank">section sur les ressources</a> pour en apprendre plus sur l&rsquo;utilisation des expressions r&eacute;guli&egrave;res dans Excel.</p>
+
+<h2>Combinaison de champs</h2>
+
+<p>Vous pouvez &eacute;galement combiner certains champs afin de valider certaines donn&eacute;es. Il est m&ecirc;me parfois n&eacute;cessaire de le faire puisque seule l&rsquo;&eacute;tude de l&rsquo;ensemble des champs permet de d&eacute;terminer si un champ ou un autre contient une valeur incorrecte. Si vous utilisez une application de e-banking, c&rsquo;est quelque chose que vous faites tout le temps sans m&ecirc;me vous en rendre compte ! La liste de vos transactions bancaires vous montre plusieurs champs qui n&rsquo;ont de sens que lorsqu&rsquo;ils sont combin&eacute;s et qui vont imm&eacute;diatement attirer votre attention si l&rsquo;un ou l&rsquo;autre semble incorrect. Vous trouvez typiquement la source de la transaction, le montant de la transaction, la monnaie, l&rsquo;indication de cr&eacute;dit ou de d&eacute;bit, la date de la transaction ainsi que le solde de votre compte. Tous ces &eacute;l&eacute;ments font partie d&rsquo;un jeu de donn&eacute;es, et vous v&eacute;rifiez ce jeu de donn&eacute;es chaque fois que vous acc&eacute;dez &agrave; votre compte en ligne et que vous vous assurez que tout est correct. Si le montant de la transaction &eacute;tait diff&eacute;rent de celui auquel vous vous attendez ou si le solde de votre compte &eacute;tait faux, vous le remarqueriez imm&eacute;diatement et pr&eacute;viendriez votre banque.&Eacute;tudiant (ID)</p>
+
+<p>C&rsquo;est la m&ecirc;me chose avec n&rsquo;importe quel jeu de donn&eacute;es. Il peut exister des champs qui n&rsquo;ont de sens que lorsqu&rsquo;ils sont ensemble. Imaginez que vous travaillez sur une &eacute;tude portant sur les m&eacute;dicaments que les patients d&rsquo;un h&ocirc;pital doivent prendre quotidiennement en utilisant trois champs diff&eacute;rents: un pour le m&eacute;dicament, un pour la quantit&eacute; et un pour l&rsquo;unit&eacute;. Un enregistrement dans ce jeu de donn&eacute;es donnerait par exemple &ldquo;Aspirine, 500, mg&rdquo; qui indiquerait que le patient doit prendre 500 mg d&rsquo;aspirine par jour. Maintenant, imaginons que vous receviez un enregistrement qui indique &ldquo;Morphine, 200, kg&rdquo;. Quelle serait votre r&eacute;action ? S&rsquo;il est concevable qu&rsquo;un patient dans un h&ocirc;pital re&ccedil;oive une dose de 200 mg de morphine par jour (le chiffre lui-m&ecirc;me ne permet pas de s&rsquo;alerter), l&rsquo;unit&eacute; est clairement incorrecte. Apr&egrave;s avoir identifi&eacute; l&rsquo;erreur, vous voudrez probablement mettre &agrave; jour le dossier du patient avec l&rsquo;unit&eacute; correcte.  </p>
+
+<p>Si un champ peut &ecirc;tre &eacute;dit&eacute; de mani&egrave;re libre, il existe une infinit&eacute; de valeurs que vous pouvez recevoir. Ainsi, vous devez &eacute;tudier votre jeu de donn&eacute;es suffisamment t&ocirc;t afin d&rsquo;identifier les groupes de variables qui fonctionnent ensemble et v&eacute;rifier les enregistrements p&eacute;riodiquement  pour d&eacute;tecter les probl&egrave;mes potentiels. Mais, parce que la v&eacute;rification des donn&eacute;es peut prendre du temps, c&rsquo;est &agrave; vous de d&eacute;cider quels champs doivent &ecirc;tre nettoy&eacute;s afin de garantir un r&eacute;sultat final fiable, peu importe que le r&eacute;sultat soit une visualisation, une analyse statistique ou un rapport.</p>
+
+<h2>Que se passerait-il si les donn&eacute;es n&rsquo;&eacute;taient pas nettoy&eacute;es?</h2>
+
+<p>Comme les processus de nettoyage des donn&eacute;es peuvent prendre du temps, il est n&eacute;cessaire que vous d&eacute;cidiez quelles variables doivent &ecirc;tre trait&eacute;es et quel type de proc&eacute;d&eacute; doit &ecirc;tre utilis&eacute;. Mais, que se passerait-il si nous court-circuitions le processus de nettoyage des donn&eacute;es dans son ensemble et que nous laissions les donn&eacute;es &ldquo;sales&rdquo; ? La r&eacute;ponse d&eacute;pend entre autres de la qualit&eacute; initiale des donn&eacute;es de votre ensemble. Au mieux, vous serez chanceux et la qualit&eacute; sera suffisante pour ne pas impacter votre rapport. Au pire, vos r&eacute;sultats seront incorrects &agrave; cause des donn&eacute;es que vous n&rsquo;aurez pas nettoy&eacute;es.&Eacute;tudiant (ID)</p>
+
+<p>Bien s&ucirc;r, vos donn&eacute;es peuvent &ecirc;tre relativement propres. Si c&rsquo;est le cas, vous pouvez ignorer le processus de nettoyage avec un impact minimum. Mais sans les v&eacute;rifications de base incluses dans ce processus, vous n&rsquo;aurez pas vraiment le moyen de conna&icirc;tre le niveau de qualit&eacute; de vos donn&eacute;es. Ceci dit&hellip;</p>
+
+<h2>Acceptez que les jeux de donn&eacute;es ne sont jamais propres &agrave; 100%</h2>
+
+<p>Le nettoyage des donn&eacute;es est comme le nettoyage de votre maison, tout ne peut pas &ecirc;tre parfait. Vous aurez beau tout essayer, vous ne pourrez pas obliger des personnes &agrave; entrer des donn&eacute;es correctes &agrave; 100%. Il faut &eacute;galement &ecirc;tre conscient que des erreurs peuvent &ecirc;tre commises lors du processus de nettoyage lui-m&ecirc;me. Vous voulez &eacute;videmment que vos donn&eacute;es soient aussi pr&eacute;cises que possible, mais il y aura toujours un peu de poussi&egrave;re dans les coins. D&egrave;s lors, il est important d&rsquo;accepter que les jeux de donn&eacute;es ne sont jamais parfaits et de comprendre comment d&eacute;finir ce qu&rsquo;est un niveau de qualit&eacute; acceptable pour r&eacute;pondre &agrave; vos besoins.&Eacute;tudiant (ID)</p>
+
+<p>Prenons un exemple. Vous avez une liste de 1000 contacts dans une base de donn&eacute;es comportant un million d&rsquo;enregistrements et vous remarquez que 2 personnes sur les 1000 de votre liste ont leur nom et leur pr&eacute;nom ensemble dans un seul champ. Allez-vous lancer un projet pour v&eacute;rifier et corriger chacun des enregistrements de votre base ? &Eacute;tudiant (ID)</p>
+
+<p>La r&eacute;ponse est : cela d&eacute;pend. &Eacute;tudiant (ID)</p>
+
+<p>Vous pouvez prendre la d&eacute;cision que les donn&eacute;es sont soit suffisamment propres pour r&eacute;pondre &agrave; vos besoins, soit pas. Cela d&eacute;pend r&eacute;ellement de la variable en question et de ce que vous voulez en faire. Si vous &ecirc;tes responsable de v&eacute;rifier que les &eacute;tudiants reportent correctement leur branche principale pour un rapport interne et que vous imaginez que le taux d&rsquo;erreur approche 0,01%, il ne sera pas forc&eacute;ment n&eacute;cessaire de lancer le projet. Par contre, si vous devez v&eacute;rifiez une variable critique li&eacute;e &agrave; un rapport sur la s&eacute;curit&eacute; et que vous pensez que le taux d&rsquo;erreur approcherait 5%, il sera pr&eacute;f&eacute;rable de v&eacute;rifier et corriger l&rsquo;ensemble des enregistrements. Avec l&rsquo;exp&eacute;rience, vous pourrez plus facilement identifier la qualit&eacute; d&rsquo;un jeu de donn&eacute;es et quelle quantit&eacute; de travail serait n&eacute;cessaire pour le nettoyer. Lors de cette &eacute;tape, il est conseill&eacute; de consulter les parties prenantes de votre projet pour mieux &eacute;valuer le nettoyage n&eacute;cessaire. Vous devez &eacute;videmment toujours essayer d&rsquo;avoir des donn&eacute;es aussi propres que possible, mais vous devez aussi garder &agrave; l&rsquo;esprit que votre jeu ne sera jamais parfait. &Eacute;tudiant (ID)</p>
+
+<p>N&rsquo;oublions pas que la pr&eacute;paration et le nettoyage des donn&eacute;es ont un co&ucirc;t. Si vous engagez quelqu&rsquo;un pour faire ce travail pour vous, l&rsquo;impact sera financier. Si vous le faites vous-m&ecirc;mes, l&rsquo;impact sera temporel. Donc si vous ne planifiez pas d&rsquo;utiliser les num&eacute;ros de t&eacute;l&eacute;phones pour r&eacute;pondre &agrave; vos besoins, pourquoi les collecter ? Ne devrait-on pas simplement ne plus collecter cette information et ne plus avoir &agrave; la nettoyer &agrave; l&rsquo;avenir ?&Eacute;tudiant (ID)</p>
+
+<h2>Une fois les donn&eacute;es nettoy&eacute;es, documentez !</h2>
+
+<p>Une fois que nos donn&eacute;es ont &eacute;t&eacute; nettoy&eacute;es, il nous reste encore un petit probl&egrave;me &agrave; r&eacute;soudre: comment pouvons-nous (et comment les autres peuvent !) v&eacute;rifier que les r&eacute;sultats obtenus sont corrects et que nous n&rsquo;avons pas introduit d&rsquo;erreurs en manipulant les donn&eacute;es? Apr&egrave;s tout, les donn&eacute;es nettoy&eacute;es peuvent sembler bien diff&eacute;rentes des donn&eacute;es brutes avec lesquelles vous avez commenc&eacute;.</p>
+
+<p>La r&eacute;ponse la plus simple est de documenter, particuli&egrave;rement si vous pensez que vous aurez &agrave; partager vos donn&eacute;es &agrave; l&rsquo;avenir. Lorsque vous nettoyez vos donn&eacute;es, il est judicieux de sauvegarder vos changements dans des fichiers s&eacute;par&eacute;s: de cette mani&egrave;re, vous pourrez toujours revenir en arri&egrave;re et regarder ce qui a chang&eacute; entre les donn&eacute;es brutes et les donn&eacute;es trait&eacute;es, quels enregistrements et quels champs ont &eacute;t&eacute; supprim&eacute;s, etc. Cela permet aussi de s&rsquo;assurer que vous pourrez retourner aux donn&eacute;es brutes ou &agrave; une &eacute;tape ant&eacute;rieure au cas o&ugrave; il serait n&eacute;cessaire d&rsquo;utiliser vos donn&eacute;es pour un autre objectif ou de suivre une autre m&eacute;thode de nettoyage. &Eacute;tudiant (ID)</p>
+
+<p>N&rsquo;oubliez pas de documenter chaque &eacute;tape r&eacute;alis&eacute;e au fur et &agrave; mesure, en indiquant exactement ce qui a &eacute;t&eacute; fait pour identifier les donn&eacute;es incorrectes et quels &eacute;l&eacute;ments ont &eacute;t&eacute; retir&eacute;s. Il est toujours plus facile de documenter au fur et &agrave; mesure que de devoir se rappeler chaque &eacute;tape ult&eacute;rieurement. Ceci est d&rsquo;autant plus important si vous utilisez des proc&eacute;dures de nettoyage manuelles en utilisant des outils tels qu&rsquo;Excel, car vous ne serez pas en mesure de les r&eacute;ex&eacute;cuter tel que vous auriez pu le faire avec un programme. Une r&egrave;gle simple est que si vous ne pouvez pas suivre vos &eacute;tapes une seconde fois en obtenant le m&ecirc;me r&eacute;sultat, ne vous attendez pas &agrave; ce que quelqu&rsquo;un d&rsquo;autre puisse le faire. &Eacute;tudiant (ID)</p>
+
+<p>Et peu importe la mani&egrave;re dont vous le faites, une documentation claire et pr&eacute;cise des proc&eacute;dures vous permettra toujours de justifier pourquoi certaines donn&eacute;es ont &eacute;t&eacute; retir&eacute;es et d&rsquo;autres pas et permettra aussi &agrave; d&rsquo;autres personnes de v&eacute;rifier que le nettoyage a &eacute;t&eacute; r&eacute;alis&eacute; de mani&egrave;re comp&eacute;tente et correcte. De plus, si vous pensez que vous aurez plus tard &agrave; partager votre jeu avec un statisticien pour des analyses compl&eacute;mentaires, pouvoir lui montrer le jeu de donn&eacute;es brutes et les op&eacute;rations r&eacute;alis&eacute;es ne pourra que faciliter son travail.&Eacute;tudiant (ID)</p>
+</section>
+</section>
