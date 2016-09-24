@@ -1,0 +1,246 @@
+<section class="violet" data-type="chapter">
+<header>
+ <div class="icon"><img src="../images/sections/06/CommonMistakes-icon-banana-fr.png" /></div>
+ <p>Chapitre 18</p>
+ <h1>Les erreurs de visualisation les plus fr&eacute;quentes</h1>
+ <p data-type="author">Par Kathy Chang, Kate Eyler-Werve, et Alberto Cairo Adapt&eacute; par Charles Boisvert</p>
+</header>
+
+<p>Bienvenue au dernier chapitre de ce livre (mais non le moindre). Nous esp&eacute;rons que vous avez en suffisamment appris pour appr&eacute;cier comment les bonnes donn&eacute;es et le bon design peuvent vous aider &agrave; mieux communiquer votre message. Les professionnels de la visualisation sont souvent si enthousiasm&eacute;s par l&#39;histoire qu&#39;ils veulent raconter qu&#39;ils en oublient les meilleures pratiques de repr&eacute;sentation de donn&eacute;es. Cela arrive aux meilleurs d&#39;entre nous.  Dans ce chapitre, nous allons discuter de ces meilleures pratiques.</p>
+
+<h2>Ne coupez pas les axes</h2>
+
+<p>On peut introduire une distorsion dans un graphique en tronquant un de ces axes. &Ccedil;a arrive lorsqu&#39;un des axes est raccourci en tronquant l&#39;une ou les deux extr&eacute;mit&eacute;s.</p>
+
+<p>Ce genre de distorsion peut &ecirc;tre r&eacute;ellement &eacute;vident. Par exemple, disons que l&#39;on a deux m&eacute;dicaments contre les allergies appel&eacute;s Happajoy et Pollaway. Le graphique &agrave; barres suivant compare la capacit&eacute; des deux m&eacute;dicaments &agrave; &eacute;liminer les sympt&ocirc;mes d&rsquo;allergies qui nous rendent si mis&eacute;rables  tels la congestion et le larmoiement.   En regardant le graphique ci-dessous, vous pourriez penser que Happajoy est deux fois plus efficace que Pollaway parce de sa barre est deux fois plus haute. Mais en examinant le graphique de plus pr&egrave;s, vous verrez que l&#39;axe vertical est coup&eacute;, partant de 30,2 et allant seulement jusqu&#39;&agrave; 30,7 pour cent. L&#39;axe coup&eacute; fait appara&icirc;tre cette diff&eacute;rence artificiellement grande. En r&eacute;alit&eacute;, Happajoy est seulement 0,2 % plus efficace que Pollaway, ce qui n&#39;est pas aussi impressionnant que pourrait le  laisser croire le graphique.</p>
+
+<figure><img alt="Effectiveness of allergy medications" src="../images/sections/06/CommonMistakes-truncated-y-axis-bar-fr.png" /></figure>
+
+<p>Parfois, la coupure et la distorsion qui en r&eacute;sulte peuvent &ecirc;tre plus subtiles. Par exemple, le graphique suivant pr&eacute;sente la quantit&eacute; de Happajoy vendue entre janvier et avril 2014.</p>
+
+<figure><img alt="Truncated x-axis" src="../images/sections/06/CommonMistakes-truncated-x-axis-line-fr.png" /></figure>
+
+<p>&Agrave; premi&egrave;re vue, ce graphique ne semble pas &ecirc;tre coup&eacute;. L&#39;axe vertical commence &agrave; z&eacute;ro.  Le point critique ici est que l&#39;axe horizontal a &eacute;t&eacute; tronqu&eacute; :  nous voyons moins de la moiti&eacute; des ventes de l&#39;ann&eacute;e. Tronquer une p&eacute;riode de temps de cette fa&ccedil;on peut donner une fausse impression, sp&eacute;cialement pour des ph&eacute;nom&egrave;nes cycliques. Et, vous l&#39;aurez devin&eacute;, les ventes de m&eacute;dicaments contre les allergies sont cycliques puisque les sympt&ocirc;mes d&#39;allergies sont habituellement plus importants au printemps et moins pr&eacute;sents en hiver.</p>
+
+<p>Y aurait-il une meilleure mani&egrave;re de pr&eacute;senter les ventes de Happajoy ? Regardez le graphique qui suit: </p>
+
+<figure><img alt="Proportional axes" src="../images/sections/06/CommonMistakes-proportional-axes-line-fr.png" /></figure>
+
+<p>Ce graphique pr&eacute;sente les m&ecirc;mes donn&eacute;es que pr&eacute;c&eacute;demment. La diff&eacute;rence est que l&#39;axe vertical est proportionnel et que l&#39;axe horizontal couvre une p&eacute;riode de deux ans. Nous pouvons clairement observer que les ventes de Happajoy sont basses en hiver et hautes au printemps, mais que le rythme des ventes n&#39;a pas chang&eacute; fondamentalement d&rsquo;une ann&eacute;e &agrave; l&rsquo;autre.  En fait,  les ventes ont &eacute;t&eacute; un peu plus basses en 2014 qu&#39;en 2013.</p>
+
+<p>Quand vous comparez les deux derniers graphiques de ventes de Happajoy, voyez-vous la diff&eacute;rence entre les histoires racont&eacute;es? Si vous &eacute;tiez un investisseur de la compagnie qui produit Happajoy et que vous interpr&eacute;tiez le graphique avec l&#39;axe vertical tronqu&eacute;, vous danseriez peut-&ecirc;tre de joie consid&eacute;rant l&rsquo;explosion des ventes.  Au contraire, si vous voyez le graphique avec l&#39;axe proportionn&eacute;, vous tendrez peut-&ecirc;tre la main vers les aspirines au lieu des Happajoy parce que vous aurez mal &agrave; la t&ecirc;te en pensant &agrave; la baisse globale des ventes. </p>
+
+<p>Donc, faites attention &agrave; ne pas tronquer les axes. Parfois, ces distorsions sont faites intentionnellement afin de tromper le lecteur ou renforcer un message.  D&#39;autres fois, elles sont la cons&eacute;quence involontaire d&rsquo;une m&eacute;connaissance des effets que peut avoir la coupure des axes sur l&#39;interpr&eacute;tation des donn&eacute;es. </p>
+
+<h2>N&#39;omettez pas les variables cl&eacute;s</h2>
+
+<blockquote>Le premier principe est de ne pas se tromper soi-m&ecirc;me, et vous &ecirc;tes la personne la plus facile &agrave; tromper.
+<p data-type="attribution"> - Richard Feynman, collation des grades, 1974, Caltech </p>
+</blockquote>
+
+<p>Vous avez s&ucirc;rement d&eacute;j&agrave; remarqu&eacute; la mani&egrave;re dont  les c&eacute;l&eacute;brit&eacute;s sont critiqu&eacute;es pour des choses qu&#39;elles ont dites.  Elles r&eacute;pondent alors qu&#39;elles ont &eacute;t&eacute; cit&eacute;es hors contexte.   Le contexte a donc toute son importance, sp&eacute;cialement lorsqu&#39;il s&#39;agit de donn&eacute;es. Il tr&egrave;s facile de se tromper en laissant de c&ocirc;t&eacute; des variables qui pourraient modifier l&#39;interpr&eacute;tation des donn&eacute;es.  Lorsque vous examinez une variable et ses relations, consid&eacute;rez avec soin l&#39;&eacute;cosyst&egrave;me dans lequel elle existe et recherchez d&eacute;lib&eacute;r&eacute;ment celles qui pourraient affecter la variable que vous &eacute;tudiez. </p>
+
+<p>C&#39;est &eacute;videmment plus facile &agrave; dire qu&#39;&agrave; faire. Par exemple, la carte ci-dessous pr&eacute;sente le meilleur vendeur de m&eacute;dicaments contre les allergies aux &Eacute;tats-Unis par &Eacute;tat: Happajoy est le meilleur dans les &Eacute;tats bleu fonc&eacute; et Pollaway dans les &Eacute;tats bleu p&acirc;le. &Agrave; premi&egrave;re vue, on pourrait croire que Happajoy est le meilleur vendeur national, bien au-devant de Pollaway. Cependant, pour avoir un portrait complet, il faut pr&ecirc;ter attention aux autres variables.</p>
+
+<figure><img alt="State leader" src="../images/sections/06/CommonMistakes-market-leader-map-fr.png" /></figure>
+
+<p>Par exemple, le graphique &agrave; barres suivant pr&eacute;sente le d&eacute;tail des parts de march&eacute; par &eacute;tats. (Pour l&#39;instant, nous regarderons seulement les &Eacute;tats de l&#39;ouest des &Eacute;tats-Unis.) Les marges par lesquelles Happajoy d&eacute;passe son concurrent sont significativement moindres que celles de Pollaway.</p>
+
+<figure><img alt="Market share" src="../images/sections/06/CommonMistakes-market-share-bar-fr.png" /></figure>
+
+<p>Combinez l&#39;information du graphique &agrave; barres ci-dessus et du tableau qui suit. Le total des ventes dans les &Eacute;tats o&ugrave; Happajoy est le leader est significativement moindre que le total des ventes dans les &Eacute;tats o&ugrave; Pollaway domine. Lorsque vous additionnez les chiffres, le total des ventes de Pollaway est plus du double de celui de Happajoy. En supposant que ce patron se r&eacute;p&egrave;te pour le reste du pays, serait-il encore pertinent de dire que Happajoy est le leader national des m&eacute;dicaments contre les allergies?</p>
+
+ <table>
+  <tr>
+   <th>&Eacute;tats</th>
+   <th>Happajoy</th>
+   <th>Pollaway</th>
+  </tr>
+  <tr>
+   <td>Wyoming (WY)</td>
+   <td>299,734</td>
+   <td>219,037</td>
+  </tr>
+  <tr>
+   <td>North Dakota (ND)</td>
+   <td>349,814</td>
+   <td>279,851</td>
+  </tr>
+  <tr>
+   <td>South Dakota (SD)</td>
+   <td>408,343</td>
+   <td>341,675</td>
+  </tr>
+  <tr>
+   <td>Montana (MT)</td>
+   <td>482,400</td>
+   <td>422,100</td>
+  </tr>
+  <tr>
+   <td>Idaho (ID)</td>
+   <td>782,040</td>
+   <td>654,360</td>
+  </tr>
+  <tr>
+   <td>Nebraska (NE)</td>
+   <td>872,320</td>
+   <td>798,080</td>
+  </tr>
+  <tr>
+   <td>New Mexico (NM)</td>
+   <td>1,043,000</td>
+   <td>834,400</td>
+  </tr>
+  <tr>
+   <td>Nevada (NV)</td>
+   <td>1,489,860</td>
+   <td>993,240</td>
+  </tr>
+  <tr>
+   <td>Utah (UT)</td>
+   <td>1,313,300</td>
+   <td>1,256,200</td>
+  </tr>
+  <tr>
+   <td>Kansas (KS)</td>
+   <td>1,414,140</td>
+   <td>1,183,260</td>
+  </tr>
+  <tr>
+   <td>Oklahoma (OK)</td>
+   <td>1,907,500</td>
+   <td>1,526,000</td>
+  </tr>
+  <tr>
+   <td>Oregon (OR)</td>
+   <td>2,027,480</td>
+   <td>1,481,620</td>
+  </tr>
+  <tr>
+   <td>Arizona (AZ)</td>
+   <td>3,014,380</td>
+   <td>2,883,320</td>
+  </tr>
+  <tr>
+   <td>Colorado (CO)</td>
+   <td>1,297,000</td>
+   <td>3,372,200</td>
+  </tr>
+  <tr>
+   <td>Washington (WA)</td>
+   <td>2,069,100</td>
+   <td>4,138,200</td>
+  </tr>
+  <tr>
+   <td>Texas (TX)</td>
+   <td>5,733,200</td>
+   <td>17,720,800</td>
+  </tr>
+  <tr>
+   <td>Californie (CA)</td>
+   <td>7,608,000</td>
+   <td>26,628,000</td>
+  </tr>
+  <tr>
+   <td>Ventes totales</td>
+   <td>32,111,611</td>
+   <td>64,732,343</td>
+  </tr>
+ </table>
+
+<p>La le&ccedil;on &agrave; tirer est que si vous voulez dessiner un portrait juste de ce qui se passe, vous devez &eacute;largir votre champ de vision pour inclure les variables qui permettent de voir les choses dans le bon contexte. De cette fa&ccedil;on, vous fournissez aux lecteurs un portrait plus complet et nuanc&eacute; de l&#39;histoire que vous tentez de raconter.</p>
+
+<h2>Ne simplifiez pas trop</h2>
+
+<p>La vie est compliqu&eacute;e, vous ne trouvez pas? Les donn&eacute;es peuvent &ecirc;tre compliqu&eacute;es aussi. Les choses compliqu&eacute;es sont difficiles &agrave; communiquer, il est donc naturel de vouloir simplifier. Cependant, il peut arriver que l&#39;on simplifie trop. La sursimplification s&#39;apparente au point pr&eacute;c&eacute;dent  et emp&ecirc;che d&rsquo;avoir une une vision juste de la situation.</p>
+
+<p>Disons, par exemple, que vous &ecirc;tes un investisseur de RediMedico, le fabriquant de Happajoy, et que vous assistez &agrave; l&#39;assembl&eacute;e annuelle des actionnaires. Le PDG de RediMedico commence sa pr&eacute;sentation avec le graphique suivant:</p>
+
+<figure><img alt="Oversimplify arrow" src="../images/sections/06/CommonMistakes-oversimplified-revenue-arrow-fr.png" /></figure>
+
+<p>L&#39;investisseur qui est en vous pourrait regarder ce graphique et commencer &agrave; r&ecirc;vasser aux fa&ccedil;ons de d&eacute;penser cet all&eacute;chant retour sur investissement. Mais l&rsquo;analyste de donn&eacute;es prend rapidement le dessus et commence &agrave; se demander ce que repr&eacute;sente cette hausse de 18 %. Vous vous demandez:</p>
+
+<ul>
+	<li>Compar&eacute; &agrave; quoi?</li>
+	<li>Compar&eacute; &agrave; quand?</li>
+	<li>Compar&eacute; &agrave; qui?</li>
+</ul>
+
+<p>Ces questionnements l&eacute;gitimes seraient avantageusement r&eacute;solus par une visualisation ad&eacute;quate. Heureusement, le PDG de RediMedico a tout pr&eacute;vu et pr&eacute;sente le graphique suivant comparant les r&eacute;sultats des ventes des cinq meilleurs m&eacute;dicaments que produit RediMedico :</p>
+
+<figure><img alt="Oversimplify compare" src="../images/sections/06/CommonMistakes-detailed-revenue-bar-fr.png" /></figure>
+
+<p>En faisant quelques calculs rapides, vous verrez que l&#39;augmentation de revenu entre 2013 et 2014 est effectivement de 18 %. Toutefois, on s&#39;aper&ccedil;oit que l&#39;augmentation est principalement attribuable &agrave; l&rsquo;augmentation de 225 % de revenu d&#39;un unique produit, l&rsquo;Exoalgio. Les revenus de trois des cinq produits ont en r&eacute;alit&eacute; diminu&eacute;. Ainsi le premier graphique de RediMedico pr&eacute;sente partiellement la v&eacute;rit&eacute;, alors que le second offre une vision plus nuanc&eacute;e en pr&eacute;sentant les d&eacute;tails derri&egrave;re cet unique chiffre. </p>
+
+<p>Montrer un graphique compos&eacute; d&#39;un seul chiffre sans aucun autre d&eacute;tail est comme r&eacute;diger un grand titre sans l&rsquo;article associ&eacute;.  Vous pouvez pr&eacute;senter le grand titre - que le revenu a augment&eacute; de 18% -  si vous fournissez ensuite le contexte.  Tentez de bien repr&eacute;senter la complexit&eacute; sous-jacente au grand titre en creusant dans les donn&eacute;es.  Les lecteurs auront ainsi une meilleure compr&eacute;hension des nombres que vous pr&eacute;sentez. </p>
+
+<h2>Ne choisissez pas la mauvaise repr&eacute;sentation</h2>
+
+<p>La cr&eacute;ation d&#39;une repr&eacute;sentation graphique consiste en la recherche d&#39;un &eacute;quilibre entre la forme et la fonction. Quand vous choisissez une forme de graphique pour vos donn&eacute;es, vous devez trouver comment communiquer efficacement &agrave; votre auditoire d&#39;une mani&egrave;re esth&eacute;tiquement agr&eacute;able. Cela peut sembler une t&acirc;che intimidante, mais plusieurs recherches peuvent vous aider dans vos d&eacute;marches. Vous avez d&rsquo;ailleurs &eacute;t&eacute; introduit &agrave; quelques recherches tr&egrave;s utiles au chapitre pr&eacute;c&eacute;dent.  Souvenez-vous de  l&#39;article de Cleveland et McGill dans lequel ils classaient diff&eacute;rentes formes de graphiques en fonction de leur efficacit&eacute; &agrave; aider les gens &agrave; faire des comparaisons justes. </p>
+
+<p>Vous pouvez utiliser ce classement pour vous aider &agrave; choisir la meilleure repr&eacute;sentation pour vos donn&eacute;es. Les surfaces et les d&eacute;grad&eacute;s sont bons pour donner aux lecteurs une appr&eacute;ciation globale, leur permettre de bien percevoir l&#39;ensemble d&#39;un probl&egrave;me. Les graphiques avec une base commune (comme les graphiques &agrave; barres) sont bons pour permettre aux lecteurs de faire des comparaisons pr&eacute;cises.</p>
+
+<p>Comme nous avons d&eacute;j&agrave; utilis&eacute; des exemples de graphique &agrave; barre et &agrave; courbe dans ce chapitre, prenons le temps d&#39;examiner quelques graphiques bas&eacute;s sur des aires et des d&eacute;grad&eacute;s.</p>
+
+<figure><img alt="Bubbles" src="../images/sections/06/CommonMistakes-market-leader-bubble-fr.png" /></figure>
+
+<p>Les graphiques &agrave; bulles utilisent les aires pour repr&eacute;senter les quantit&eacute;s de m&eacute;dicaments  vendus dans certains &Eacute;tats am&eacute;ricains. En vous basant sur la taille des bulles, vous pouvez g&eacute;n&eacute;ralement dire que Happajoy a &eacute;t&eacute; plus vendu en Arizona qu&#39;au Nouveau-Mexique. Mais pouvez-vous dire de combien? Est-ce que la bulle de l&#39;Arizona est trois fois plus grande que celle du Nouveau-Mexique? Quatre fois? C&#39;est difficile &agrave; dire. C&#39;est encore plus difficile lorsque les tailles des bulles sont semblables: est-ce en Utah ou dans le Kansas que le Happajoy a &eacute;&eacute; le plus vendu?</p>
+
+<p>Nous nous heurtons au m&ecirc;me probl&egrave;me avec le graphique suivant qui repr&eacute;sente aussi les ventes d&#39;Happajoy.  La Californie est d&eacute;finitivement plus fonc&eacute;e que le Texas, mais combien de fois plus fonc&eacute;e? Deux fois? Trois fois? Qui sait? C&#39;est pourquoi les aires et les d&eacute;grad&eacute;s sont plus appropri&eacute;s pour donner une vue d&#39;ensemble que pour effectuer une comparaison pr&eacute;cise.</p>
+
+<figure><img alt="Shading" src="../images/sections/06/CommonMistakes-market-leader-shade-map-fr.png" /></figure>
+
+<p>En plus des aires et des d&eacute;grad&eacute;s, les angles sont aussi probl&eacute;matiques quand vient le temps de faire des comparaisons pr&eacute;cises. C&#39;est pourquoi il est difficile de comparer deux graphiques &agrave; secteurs, comme sur l&#39;exemple ci-dessous.</p>
+
+<figure><img alt="Pie charts" src="../images/sections/06/CommonMistakes-revenue-comparison-pie-fr.png" /></figure>
+
+<p>Il est d&eacute;j&agrave; assez difficile de comparer pr&eacute;cis&eacute;ment les secteurs d&rsquo;un m&ecirc;me graphique.  Il est encore plus difficile de comparer deux graphiques &agrave; secteurs entre eux. Si votre but est d&#39;aider vos lecteurs &agrave; comparer les revenus entre deux ann&eacute;es, un graphique &agrave; barres serait un choix plus judicieux.</p>
+
+<p>C&#39;est l&#39;&eacute;l&eacute;ment cl&eacute;!  Il faut se demander : quelle forme graphique facilitera le plus la t&acirc;che de mes lecteurs?</p>
+
+<h2>Pr&eacute;sentez les donn&eacute;es de multiples fa&ccedil;ons</h2>
+
+<p>Nous avons d&eacute;j&agrave; vu comment diff&eacute;rentes formes de graphiques couvrent diff&eacute;rents besoins. Alors que faut-il faire lorsque l&#39;on a beaucoup de donn&eacute;es et que l&#39;on veut pr&eacute;senter diff&eacute;rents aspects de ces donn&eacute;es, sans submerger votre auditoire de graphiques trop compliqu&eacute;s? Une mani&egrave;re de relever ce d&eacute;fi est de pr&eacute;senter vos donn&eacute;es de multiples fa&ccedil;ons. Vous pouvez pr&eacute;senter individuellement plusieurs graphiques, chacun montrant un aspect diff&eacute;rent de vos donn&eacute;es, de mani&egrave;re &agrave; ce que globalement votre auditoire ait une vue plus nette de l&#39;ensemble de vos donn&eacute;es.</p>
+
+<p>Disons, par exemple, que le PDG de RediMedico veuille pr&eacute;senter aux actionnaires les statistiques de vente du Happajoy aux &Eacute;tats-Unis depuis son introduction sur le march&eacute; il y a dix ans. Les donn&eacute;es disponibles sont compos&eacute;es des ventes d&#39;Happajoy dans chaque &Eacute;tat par ann&eacute;e depuis 2004. Vous &ecirc;tes l&#39;heureux analyste de donn&eacute;es qui doit  d&eacute;terminer comment repr&eacute;senter autant la vue globale que la vue d&eacute;taill&eacute;e de ces donn&eacute;es. </p>
+
+<p>Commen&ccedil;ons par la vue globale. Vous souvenez-vous que les formes graphiques utilisant les aires et les d&eacute;grad&eacute;s sont meilleures pour pr&eacute;senter une vue d&#39;ensemble? Pour chaque ann&eacute;e o&ugrave; Happajoy a &eacute;t&eacute; sur le march&eacute;, une carte utilisant un d&eacute;grad&eacute; de couleurs qui repr&eacute;sente les ventes donnera une vision g&eacute;n&eacute;rale &agrave; travers le temps et les &Eacute;tats:</p>
+
+<figure><img alt="Shade animation" src="../images/sections/06/CommonMistakes-animated-shade-map-fr.png" /></figure>
+
+<p>Continuons maintenant avec la vue d&eacute;taill&eacute;e. Disons que RediMedico a lanc&eacute; plusieurs grandes campagnes de publicit&eacute; en Californie et &agrave; New York il y a quelques ann&eacute;es et que les investisseurs se demandent comment vont les ventes dans ces r&eacute;gions. En utilisant le m&ecirc;me ensemble de donn&eacute;es, vous pouvez avoir une vue plus d&eacute;taill&eacute;e des ventes dans un &Eacute;tat en particulier:</p>
+
+<figure><img alt="Single line" src="../images/sections/06/CommonMistakes-revenue-single-line-fr.png" /></figure>
+
+<p>Ou vous pouvez comparer les ventes entre deux &Eacute;tats:</p>
+
+<figure><img alt="Double line" src="../images/sections/06/CommonMistakes-revenue-double-line-fr.png" /></figure>
+
+<p>Vous voyez, les m&ecirc;mes donn&eacute;es, des pr&eacute;sentations diff&eacute;rentes. Donc, si vous voulez pr&eacute;senter &agrave; vos lecteurs diff&eacute;rentes facettes d&#39;une histoire, pr&eacute;sentez-leur des graphiques sous de multiples formes.</p>
+
+<h2>Annotez vos graphiques &agrave; l&#39;aide de texte</h2>
+
+<p>On dit qu&#39;une image vaut mille mots, mais cela ne veut pas dire que vous devez oublier enti&egrave;rement les mots! M&ecirc;me les visualisations les plus belles et les plus &eacute;l&eacute;gantes peuvent b&eacute;n&eacute;ficier de textes pour souligner ou expliquer certains &eacute;l&eacute;ments &agrave; votre auditoire. C&#39;est particuli&egrave;rement utile lorsque vous pr&eacute;sentez de multiples couches d&#39;information.  Dans ce cas, vos annotations permettent aux lecteurs de faire le lien entre les diff&eacute;rents &eacute;l&eacute;ments pour en comprendre l&#39;ensemble.   Les bonnes visualisations permettent de susciter l&#39;int&eacute;r&ecirc;t de votre auditoire.  Ajouter du texte est une bonne fa&ccedil;on de r&eacute;pondre aux questions soulev&eacute;es par les lecteurs curieux qui examinent vos graphiques.</p>
+
+<p>Revenons aux ventes de Happajoy. Examinez le graphique suivant:</p>
+
+<figure><img alt="Unannotated" src="../images/sections/06/CommonMistakes-revenue-unannotated-line-fr.png" /></figure>
+
+<p>Vous pourriez vous demander ce qui s&#39;est pass&eacute; entre 2009 et 2010.  Pourquoi y a-t-il eu une si grande baisse de revenu? Dans ce cas, il pourrait &ecirc;tre int&eacute;ressant d&#39;annoter votre graphique.</p>
+
+<figure><img alt="Annotated" src="../images/sections/06/CommonMistakes-revenue-annotated-line-fr.png" /></figure>
+
+<p>Lorsque vous cr&eacute;ez un graphique, pensez au &quot;puis apr&egrave;s&quot;: pourquoi les gens devraient-ils s&#39;int&eacute;resser &agrave; l&#39;information que vous pr&eacute;sentez? Ajoutez des annotations pour les  aider &agrave; comprendre le message. R&eacute;digez un bon titre qui attire l&rsquo;attention, une bonne introduction qui souligne les points cl&eacute;s et une bonne histoire qui structure votre visualisation logiquement. Un texte clair et concis est aussi important qu&#39;une bonne visualisation.</p>
+
+<h2>&Eacute;tude d&#39;un magnifique cas d&#39;infographie</h2>
+
+<p>Pour terminer ce chapitre, passons en revue les conseils pr&eacute;sent&eacute;s en &eacute;tudiant un exemple concret r&eacute;alis&eacute; par des professionnels : un graphique con&ccedil;u par le <a class="c5" href="http://www.nytimes.com/2013/10/16/health/uganda-fights-stigma-and-poverty-to-take-on-breast-cancer.html?_r=0#g-graphic">sur le cancer du sein</a>. Les concepteurs ont organis&eacute; l&#39;information sous forme d&rsquo;histoire avec une structure par &eacute;tape. Afin de vous rendre compte, vous pouvez cliquer sur le lien et acc&eacute;der au graphique interactif publi&eacute; par le journal.</p>
+
+<p>Sur le premier &eacute;cran, vous verrez un graphique &agrave; bulles qui donne une vue globale du nombre de nouveaux cas de cancer du sein par pays. Apr&egrave;s avoir cliqu&eacute; sur le bouton Begin, vous verrez un graphique &agrave; point avec des axes proportionnels. Le graphique pr&eacute;sente une corr&eacute;lation inverse entre la d&eacute;tection du cancer du sein et la mortalit&eacute;. Un graphique en nuage de point est une bonne mani&egrave;re de pr&eacute;senter la corr&eacute;lation entre des variables et un graphique &agrave; bulles est une bonne fa&ccedil;on de pr&eacute;senter une vue g&eacute;n&eacute;rale; les concepteurs ont donc choisi des formes graphiques adapt&eacute;es &agrave; ce qu&#39;ils voulaient repr&eacute;senter.</p>
+
+<p>Notez aussi la mani&egrave;re dont  le designer utilise un titre qui attire l&#39;attention du lecteur ( &quot;O&ugrave; tue le cancer du sein?&quot;) et du texte pour souligner que les pays d&eacute;velopp&eacute;s ont un meilleur taux de diagnostic (et un taux de mortalit&eacute; plus bas) que les pays en voie de d&eacute;veloppement. En continuant &agrave; cliquer sur le bouton Next, le concepteur vous guide plus en profondeur dans le graphique en nuage de points en ciblant un ensemble de pays et en fournissant une annotation qui vous donne une perspective suppl&eacute;mentaire sur cet ensemble de donn&eacute;es. Sans ces notes, nous aurions un graphique relativement simpliste qui laisse peu &agrave; explorer. En ajoutant des annotations utiles et bien plac&eacute;es, le concepteur nous aide &agrave; voir des relations qu&#39;autrement nous aurions pu manquer.</p>
+
+<p>Les concepteurs pr&eacute;sentent aussi les donn&eacute;es de diff&eacute;rentes mani&egrave;res. Ils utilisent les couleurs pour ajouter un niveau suppl&eacute;mentaire de d&eacute;tail: le statut de d&eacute;veloppement des divers pays. En plus, si vous &ecirc;tes curieux des statistiques d&#39;un pays sp&eacute;cifique, vous pouvez survoler de votre souris le point du pays pour afficher ses donn&eacute;es.</p>
+
+<p>Finalement, en ajoutant des annotations et en utilisant divers graphiques, les concepteurs pr&eacute;sentent les donn&eacute;es dans leur contexte sans omettre de donn&eacute;es d&#39;importance ni sur-simplifier. En suivant de bonnes pratiques de visualisation de donn&eacute;es, les concepteurs ont cr&eacute;&eacute; une infographie engageante, claire et balanc&eacute;e.</p>
+</section>
